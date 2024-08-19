@@ -76,7 +76,6 @@ export const useAuthStore = () => {
         onAuthStateChanged(this.roarfirekit?.app.auth, async (user) => {
           if (user) {
             this.firebaseUser.appFirebaseUser = user;
-            this.updateTasksDictionary();
           } else {
             this.firebaseUser.appFirebaseUser = null;
           }
@@ -89,14 +88,6 @@ export const useAuthStore = () => {
       },
       async getLegalDoc(docName) {
         return await this.roarfirekit.getLegalDoc(docName);
-      },
-      async updateTasksDictionary() {
-        if (this.isFirekitInit) {
-          const tasksDictionary = await this.roarfirekit.getTasksDictionary();
-          this.tasksDictionary = tasksDictionary;
-          return;
-        }
-        return;
       },
       async updateConsentStatus(docName, consentVersion, params = {}) {
         this.roarfirekit.updateConsentStatus(docName, consentVersion, params);

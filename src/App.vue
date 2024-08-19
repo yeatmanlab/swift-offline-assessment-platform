@@ -1,5 +1,32 @@
 <script setup>
+import {ref, onBeforeMount} from 'vue';
 import { useRoute } from 'vue-router';
+import { useAuthStore } from '@/store/auth';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { fetchDocById } from '@/helpers/query/utils';
+
+const isAuthStoreReady = ref(false);
+
+onBeforeMount(async () => {
+  const authStore = useAuthStore();
+  await authStore.initFirekit();
+  authStore.setUser();
+  await authStore.initStateFromRedirect().then(async () => {
+    if (authStore.uid) {
+      const userData = await fetchDocById('users', authStore.uid);
+      const userClaims = await fetchDocById('userClaims', authStore.uid);
+      authStore.userData = userData;
+      authStore.userClaims = userClaims;
+    }
+  });
+  isAuthStoreReady.value = true;
+  //login as test user
+  console.log("auth store", authStore)
+  // const auth  = getAuth(authStore.admin.auth);
+  authStore.signInWithGooglePopup();
+  // authStore.logInWithEmailAndPassword({email:'testsuperadmin1@roar-auth.com', password: '!roartestsuperadmin1'});
+
+});
 </script>
 
 <template>

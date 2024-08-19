@@ -42,7 +42,7 @@
   };
   
   unsubscribe = authStore.$subscribe(async (mutation, state) => {
-    if (state.roarfirekit.restConfig) init();
+    if (state.roarfirekit?.restConfig) init();
   });
   
   const { isLoading: isLoadingUserData, data: userData } = useQuery({
@@ -69,8 +69,8 @@
     } catch (error) {
       console.error('An error occurred while importing the game module.', error);
     }
-  
-    if (roarfirekit.value.restConfig) init();
+    console.log(roarfirekit.value)
+    if (roarfirekit.value?.restConfig) init();
     if (isFirekitInit.value && !isLoadingUserData.value) {
       await startTask();
     }
@@ -84,7 +84,8 @@
     if (newFirekitInitValue && !newLoadingUserData) await startTask();
   });
   
-  const { selectedAdmin } = storeToRefs(gameStore);
+  const selectedAdmin = ref("5f9b1b3b-0b3b-4b3b-8b3b-0b3b4b3b4b3b");
+//   const { selectedAdmin } = storeToRefs(gameStore);
   
   async function startTask() {
     try {
@@ -123,9 +124,9 @@
       });
     } catch (error) {
       console.error('An error occurred while starting the task:', error);
-      alert(
-        'An error occurred while starting the task. Please refresh the page and try again. If the error persists, please submit an issue report.',
-      );
+    //   alert(
+    //     'An error occurred while starting the task. Please refresh the page and try again. If the error persists, please submit an issue report.',
+    //   );
     }
   }
   </script>
