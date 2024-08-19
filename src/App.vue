@@ -1,19 +1,9 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import PWABadge from './components/PWABadge.vue'
+import { useRoute } from 'vue-router';
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/favicon.svg" class="logo" alt="roar-offline logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="roar-offline" />
-  <PWABadge />
+  <router-view />
 </template>
 
 <style scoped>
