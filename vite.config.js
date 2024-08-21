@@ -2,6 +2,7 @@ import { VitePWA } from 'vite-plugin-pwa';
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { fileURLToPath, URL } from 'url';
+import mkcert from 'vite-plugin-mkcert';
 
 
 // https://vitejs.dev/config/
@@ -14,7 +15,9 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
-  plugins: [vue(), VitePWA({
+  plugins: [vue(),
+    mkcert(),
+     VitePWA({
     strategies: 'injectManifest',
     srcDir: 'src',
     filename: 'sw.js',

@@ -15,6 +15,13 @@ const routes = [
     props: { taskId: 'swr', language: 'en' },
     meta: { pageTitle: 'SWR' },
   },
+  {
+    path: '/game/sre',
+    name: 'SRE',
+    component: () => import('../components/tasks/taskSRE.vue'),
+    props: { taskId: 'sre', language: 'en' },
+    meta: { pageTitle: 'SRE' },
+  },
 ];
 
 const router = createRouter({

@@ -23,8 +23,13 @@ onBeforeMount(async () => {
   //login as test user
   console.log("auth store", authStore)
   // const auth  = getAuth(authStore.admin.auth);
-  authStore.signInWithGooglePopup();
-  // authStore.logInWithEmailAndPassword({email:'testsuperadmin1@roar-auth.com', password: '!roartestsuperadmin1'});
+  // authStore.signInWithGooglePopup();
+  try {
+  authStore.logInWithEmailAndPassword({email:'testingUser4@roar-auth.com', password: 'password4'});
+  }
+  catch (error) {
+    console.log("error", error)
+  } 
 
 });
 </script>
