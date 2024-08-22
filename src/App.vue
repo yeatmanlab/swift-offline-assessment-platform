@@ -24,12 +24,12 @@ onBeforeMount(async () => {
   console.log("auth store", authStore)
   // const auth  = getAuth(authStore.admin.auth);
   // authStore.signInWithGooglePopup();
-  try {
-  authStore.logInWithEmailAndPassword({email:'testingUser4@roar-auth.com', password: 'password4'});
-  }
-  catch (error) {
-    console.log("error", error)
-  } 
+  // try {
+  // authStore.logInWithEmailAndPassword({email:'testingUser4@roar-auth.com', password: 'password4'});
+  // }
+  // catch (error) {
+  //   console.log("error", error)
+  // } 
 
 });
 </script>

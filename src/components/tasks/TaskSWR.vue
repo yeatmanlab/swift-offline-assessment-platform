@@ -89,6 +89,7 @@
   
   async function startTask() {
     try {
+      console.log('start task called', userData)
       let checkGameStarted = setInterval(function () {
         // Poll for the preload trials progress bar to exist and then begin the game
         let gameLoading = document.querySelector('.jspsych-content-wrapper');
@@ -99,6 +100,7 @@
       }, 100);
   
       const appKit = await authStore.roarfirekit.startAssessment(selectedAdmin.value.id, taskId, version);
+      console.log('userdata', userData)
   
       const userDob = _get(userData.value, 'studentData.dob');
       const userDateObj = new Date(userDob);

@@ -7,7 +7,7 @@ const roarConfig = import.meta.env.MODE === 'LEVANTE' ? levanteFirebaseConfig : 
 export async function initNewFirekit() {
   const firekit = new RoarFirekit({
     roarConfig,
-    authPersistence: 'session',
+    authPersistence: 'local',
     markRawConfig: {
       auth: false,
       db: false,

@@ -10,6 +10,7 @@
     "generate-pwa-icons": "pwa-assets-generator"
   },
   "dependencies": {
+    "@bdelab/roar-firekit": "*",
     "@bdelab/roar-sre": "^1.15.12",
     "@bdelab/roar-swr": "^1.12.5",
     "@tanstack/vue-query": "^5.51.21",
