@@ -100,13 +100,14 @@
         }
       }, 100);
   
-      const appKit = await authStore.roarfirekit.startAssessment(selectedAdmin.value.id, taskId, version);
+      const tempSelectedAdmin = "nwhT3AkUNhTstIg48GUk"
+      const appKit = await authStore.roarfirekit.startAssessment(tempSelectedAdmin, taskId, version);
   
-      const userDob = _get(userData.value, 'studentData.dob');
+      const userDob = _get(userData, 'studentData.dob');
       const userDateObj = new Date(userDob);
   
       const userParams = {
-        grade: _get(userData.value, 'studentData.grade'), 
+        grade: _get(userData, 'studentData.grade'), 
         birthMonth: userDateObj.getMonth() + 1,
         birthYear: userDateObj.getFullYear(),
         language: props.language,
@@ -118,7 +119,7 @@
   
       await roarApp.run().then(async () => {
         // Handle any post-game actions.
-        // await authStore.completeAssessment(selectedAdmin.value.id, taskId);
+        await authStore.completeAssessment(tempSelectedAdmi, taskId);
   
         // Navigate to home, but first set the refresh flag to true.
         gameStore.requireHomeRefresh();
