@@ -45,14 +45,16 @@
   unsubscribe = authStore.$subscribe(async (mutation, state) => {
     if (state.roarfirekit?.restConfig) init();
   });
+
+  const {userData} = useAuthStore();
   
-  const { isLoading: isLoadingUserData, data: userData } = useQuery({
-    queryKey: ['userData', uid, 'studentData'],
-    queryFn: () => fetchDocById('users', uid.value, ['studentData']),
-    keepPreviousData: true,
-    enabled: initialized,
-    staleTime: 5 * 60 * 1000, // 5 minutes
-  });
+  // const { isLoading: isLoadingUserData, data: userData } = useQuery({
+  //   queryKey: ['userData', uid, 'studentData'],
+  //   queryFn: () => fetchDocById('users', uid.value, ['studentData']),
+  //   keepPreviousData: true,
+  //   enabled: initialized,
+  //   staleTime: 5 * 60 * 1000, // 5 minutes
+  // });
   
   // The following code intercepts the back button and instead forces a refresh.
   // We add { once: true } to prevent an infinite loop.
@@ -72,7 +74,7 @@
     }
   
     if (roarfirekit.value?.restConfig) init();
-    if (isFirekitInit.value && !isLoadingUserData.value) {
+    if (isFirekitInit.value) {
       await startTask();
     }
   });
@@ -81,8 +83,8 @@
     window.removeEventListener('popstate', handlePopState);
   });
   
-  watch([isFirekitInit, isLoadingUserData], async ([newFirekitInitValue, newLoadingUserData]) => {
-    if (newFirekitInitValue && !newLoadingUserData) await startTask();
+  watch([isFirekitInit], async ([newFirekitInitValue]) => {
+    if (newFirekitInitValue) await startTask();
   });
   
   const { selectedAdmin } = storeToRefs(gameStore);
@@ -104,7 +106,7 @@
       const userDateObj = new Date(userDob);
   
       const userParams = {
-        grade: _get(userData.value, 'studentData.grade'),
+        grade: _get(userData.value, 'studentData.grade'), 
         birthMonth: userDateObj.getMonth() + 1,
         birthYear: userDateObj.getFullYear(),
         language: props.language,
@@ -116,7 +118,7 @@
   
       await roarApp.run().then(async () => {
         // Handle any post-game actions.
-        await authStore.completeAssessment(selectedAdmin.value.id, taskId);
+        // await authStore.completeAssessment(selectedAdmin.value.id, taskId);
   
         // Navigate to home, but first set the refresh flag to true.
         gameStore.requireHomeRefresh();

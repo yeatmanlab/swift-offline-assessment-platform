@@ -1,5 +1,6 @@
 <template>
     <div id="jspsych-target" class="game-target" translate="no" />
+    {{userData}}
     <div v-if="!gameStarted" class="col-full text-center">
       <!-- <h1>{{ $t('tasks.preparing') }}</h1> -->
       <AppSpinner />
@@ -44,14 +45,16 @@
   unsubscribe = authStore.$subscribe(async (mutation, state) => {
     if (state.roarfirekit?.restConfig) init();
   });
+
+  const { userData }  = useAuthStore();
   
-  const { isLoading: isLoadingUserData, data: userData } = useQuery({
-    queryKey: ['userData', uid, 'studentData'],
-    queryFn: () => fetchDocById('users', uid.value, ['studentData']),
-    keepPreviousData: true,
-    enabled: initialized,
-    staleTime: 5 * 60 * 1000, // 5 minutes
-  });
+  // const { isLoading: isLoadingUserData, data: userData } = useQuery({
+  //   queryKey: ['userData', uid, 'studentData'],
+  //   queryFn: () => fetchDocById('users', uid.value, ['studentData']),
+  //   keepPreviousData: true,
+  //   enabled: initialized,
+  //   staleTime: 5 * 60 * 1000, // 5 minutes
+  // });
   
   // The following code intercepts the back button and instead forces a refresh.
   // We add { once: true } to prevent an infinite loop.
@@ -71,7 +74,8 @@
     }
     console.log(roarfirekit.value)
     if (roarfirekit.value?.restConfig) init();
-    if (isFirekitInit.value && !isLoadingUserData.value) {
+    // if (isFirekitInit.value && !isLoadingUserData.value) {
+    if (isFirekitInit.value) {
       await startTask();
     }
   });
@@ -80,8 +84,8 @@
     window.removeEventListener('popstate', handlePopState);
   });
   
-  watch([isFirekitInit, isLoadingUserData], async ([newFirekitInitValue, newLoadingUserData]) => {
-    if (newFirekitInitValue && !newLoadingUserData) await startTask();
+  watch([isFirekitInit], async ([newFirekitInitValue]) => {
+    if (newFirekitInitValue) await startTask();
   });
   
   const selectedAdmin = ref("5f9b1b3b-0b3b-4b3b-8b3b-0b3b4b3b4b3b");
@@ -98,27 +102,31 @@
           clearInterval(checkGameStarted);
         }
       }, 100);
+
+      const tempSelectedAdmin = "nwhT3AkUNhTstIg48GUk"
   
-      const appKit = await authStore.roarfirekit.startAssessment(selectedAdmin.value.id, taskId, version);
+      const appKit = await authStore.roarfirekit.startAssessment(tempSelectedAdmin, taskId, version);
       console.log('userdata', userData)
   
-      const userDob = _get(userData.value, 'studentData.dob');
+      const userDob = _get(userData, 'studentData.dob');
       const userDateObj = new Date(userDob);
   
       const userParams = {
-        grade: _get(userData.value, 'studentData.grade'),
+        grade: _get(userData, 'studentData.grade'),
         birthMonth: userDateObj.getMonth() + 1,
         birthYear: userDateObj.getFullYear(),
         language: props.language,
       };
+      console.log("made it past params")
   
       const gameParams = { ...appKit._taskInfo.variantParams };
+      console.log("made it past game params")
   
       const roarApp = new TaskLauncher(appKit, gameParams, userParams, 'jspsych-target');
   
       await roarApp.run().then(async () => {
         // Handle any post-game actions.
-        await authStore.completeAssessment(selectedAdmin.value.id, taskId);
+        await authStore.completeAssessment(tempSelectedAdmin, taskId);
   
         // Navigate to home, but first set the refresh flag to true.
         gameStore.requireHomeRefresh();
