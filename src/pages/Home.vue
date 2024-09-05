@@ -10,7 +10,7 @@
   <!-- <div v-if="userData"> -->
   <div>
     <h1>user data:</h1>
-    <pre>{{ userData }}</pre>
+    <pre>{{ authStore.userData }}</pre>
   </div>
   <!-- </div> -->
 </template>
@@ -19,7 +19,6 @@
 import { useAuthStore } from "@/store/auth";
 
 const authStore = useAuthStore();
-const {userData} = useAuthStore();
 
 const loginUser = () => {
   console.log("login user");
@@ -29,8 +28,8 @@ const loginUser = () => {
   }
   
   authStore.logInWithEmailAndPassword({
-    email: "testsuperadmin1@roar-auth.com",
-    password: "!roartestsuperadmin1",
+    email: "testofflineadmin1@roar-auth.com",
+    password: "testofflineadminpw",
   });
   // console.log(authStore);
 };

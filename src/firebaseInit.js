@@ -1,11 +1,11 @@
-import { RoarFirekit } from '@bdelab/roar-firekit';
+import { OfflineFirekit } from '../firekit/index';
 import roarFirebaseConfig from './config/firebaseRoar';
 import levanteFirebaseConfig from './config/firebaseLevante';
 
 const roarConfig = import.meta.env.MODE === 'LEVANTE' ? levanteFirebaseConfig : roarFirebaseConfig;
 
 export async function initNewFirekit() {
-  const firekit = new RoarFirekit({
+  const firekit = new OfflineFirekit({
     roarConfig,
     authPersistence: 'local',
     markRawConfig: {
@@ -14,7 +14,7 @@ export async function initNewFirekit() {
       functions: false,
     },
 
-    verboseLogging: import.meta.env.MODE === 'LEVANTE' ? false : true,
-  });
-  return await firekit.init();
+  verboseLogging: import.meta.env.MODE === 'LEVANTE' ? false : true,
+});
+return await firekit.init();
 }

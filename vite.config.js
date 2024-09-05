@@ -14,6 +14,8 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
+    symlinks:false,
+    reserveSymlinks: true,
   },
   plugins: [vue(),
     mkcert(),
