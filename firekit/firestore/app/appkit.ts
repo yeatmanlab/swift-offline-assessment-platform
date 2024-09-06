@@ -18,15 +18,15 @@ interface DataFlags {
 export interface AppkitInput {
   firebaseProject?: FirebaseProject;
   firebaseConfig?: FirebaseConfig;
-  userInfo: UserInfo;
   taskInfo: TaskVariantInfo;
+  userInfo?: UserInfo;
+  parentUserInfo?: UserInfo;
   assigningOrgs?: OrgLists;
   readOrgs?: OrgLists;
   assignmentId?: string;
   runId?: string;
   testData?: DataFlags;
   demoData?: DataFlags;
-  parentUser?: RoarAppUser;
 }
 
 /**

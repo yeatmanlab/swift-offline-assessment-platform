@@ -1315,6 +1315,7 @@ export class RoarFirekit {
   }
 
   public get dbRefs() {
+    console.log("dbrefs called", this)
     if (this.admin?.user && this.app?.user) {
       return {
         admin: {

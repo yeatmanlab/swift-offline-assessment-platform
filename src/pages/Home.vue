@@ -28,7 +28,7 @@ const loginUser = () => {
   }
   
   authStore.logInWithEmailAndPassword({
-    email: "testofflineadmin1@roar-auth.com",
+    email: "testofflineadmin4@roar-auth.com",
     password: "testofflineadminpw",
   });
   // console.log(authStore);

@@ -31,7 +31,7 @@ export class OfflineRun extends RoarRun {
     runId,
     testData = false,
     demoData = false,
-    parentUser,
+    parentUserInfo,
   }: RunInput) {;
     super({user, task, assigningOrgs, readOrgs, assignmentId, runId, testData, demoData})
     this.parentUser = parentUser;
@@ -39,6 +39,7 @@ export class OfflineRun extends RoarRun {
     // set runRef to parent user's userRun collection
     if(runId) {
         // this.runRef = this.parentUser?.userRef.collection('userRuns').doc(user.userRef).collection('runs').doc(runId);   
+        this.parentUserRef = doc()
         this.runRef = doc(this.parentUser!.userRef, 'runs', runId);
         // this.runRef = this.parentUser?.userRef.doc(runId);   
     }

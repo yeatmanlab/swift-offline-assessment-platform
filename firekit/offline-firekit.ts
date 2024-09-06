@@ -1,10 +1,8 @@
-import { RoarAppUser } from '@bdelab/roar-firekit';
 import { RoarFirekit } from './firekit';
 import { getTaskAndVariant } from './firestore/query-assessment';
-import { RoarAppkit } from './firestore/app/appkit';
 import { doc, runTransaction } from 'firebase/firestore';
 import { Assessment, AssignedAssessment } from './interfaces';
-import { UserInput } from './firestore/app/user';
+import { UserInfo, UserInput } from './firestore/app/user';
 import { OfflineAppKit } from './firestore/app/offline-appkit';
 
 // TODO: See if I can create a variant of the ROAR firekit class where trials are written
@@ -48,7 +46,51 @@ export class OfflineFirekit extends RoarFirekit {
     taskVersion: string,
     participant: UserInput,
   ) {
-    this._verifyAuthentication();
+    // temporarily commented out 
+    // this._verifyAuthentication();
+    const targetParticipantUserInfo:UserInfo = {
+      "db": {
+          "app": {
+              "_isDeleted": false,
+              "_options": {
+                  "apiKey": "AIzaSyDw0TnTXbvRyoVo5_oa_muhXk9q7783k_g",
+                  "authDomain": "roar.education",
+                  "projectId": "gse-roar-assessment",
+                  "storageBucket": "gse-roar-assessment.appspot.com",
+                  "messagingSenderId": "757277423033",
+                  "appId": "1:757277423033:web:d6e204ee2dd1047cb77268"
+              },
+              "_config": {
+                  "name": "app",
+                  "automaticDataCollectionEnabled": false
+              },
+              "_name": "app",
+              "_automaticDataCollectionEnabled": false,
+              "_container": {
+                  "name": "app",
+                  "providers": {}
+              }
+          },
+          "databaseId": {
+              "projectId": "gse-roar-assessment",
+              "database": "(default)"
+          },
+          "settings": {
+              "host": "firestore.googleapis.com",
+              "ssl": true,
+              "ignoreUndefinedProperties": false,
+              "cacheSizeBytes": 41943040,
+              "experimentalForceLongPolling": false,
+              "experimentalAutoDetectLongPolling": true,
+              "experimentalLongPollingOptions": {},
+              "useFetchStreams": true
+          }
+      },
+      "roarUid": "ctt3TIYA7kQN6BGs97fMTWg7ZAk2",
+      "assessmentUid": "5ZU8afI7lVYV29P58EQe18UdmDC2",
+      "assessmentPid": "OTG-c71fccea",
+      "userType": "student"
+  }
 
     const appKit = await runTransaction(this.admin!.db, async (transaction) => {
       // First grab data about the administration
@@ -132,11 +174,13 @@ export class OfflineFirekit extends RoarFirekit {
             },
           };
 
+          console.log('this is what the user info is set as', this.roarAppUserInfo)
           // TODO: use target participant user info instead of the default
-          // This would allow an admin user to launch another user into
+      //     // This would allow an admin user to launch another user into
           return new OfflineAppKit({
             firebaseProject: this.app,
-            userInfo: participant,
+            userInfo: targetParticipantUserInfo,
+            parentUserInfo: this.roarAppUserInfo,
             assigningOrgs,
             readOrgs,
             assignmentId: administrationId,
@@ -153,7 +197,8 @@ export class OfflineFirekit extends RoarFirekit {
               variant: isVariantDemo,
               run: isAssignmentDemo || isUserDemo || isTaskDemo || isVariantDemo,
             },
-            // parentUser: this.roarAppUser,
+            // return the ref of the admin user 
+            // parentUserRef: this.roarUid,
           });
         } else {
           throw new Error(

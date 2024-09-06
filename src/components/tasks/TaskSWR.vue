@@ -104,7 +104,7 @@
 
       const tempSelectedAdmin = "nwhT3AkUNhTstIg48GUk"
   
-      const appKit = await authStore.roarfirekit.startAssessment(tempSelectedAdmin, taskId, version);
+      const appKit = await authStore.roarfirekit.startAssessmentForTargetParticipant(tempSelectedAdmin, taskId, version);
       console.log('userdata', userData)
   
       const userDob = _get(userData, 'studentData.dob');

@@ -1,15 +1,15 @@
 import { onAuthStateChanged } from "firebase/auth";
 import { AppkitInput, RoarAppkit } from "./appkit";
-import { RoarAppUser } from "./user";
+import { RoarAppUser, UserInfo, UserInput } from "./user";
 import { OfflineRun } from "./offline-run";
 import { RoarTaskVariant } from "./task";
 import { initializeFirebaseProject } from "../util";
 import { getDownloadURL, ref } from "firebase/storage";
 
 export class OfflineAppKit extends RoarAppkit {
-    parentUser?: RoarAppUser
-    // TODO: find out what functions i need to override with this class
-      /**
+  parentUserInfo?: UserInfo;
+  // TODO: find out what functions i need to override with this class
+  /**
    * Create a RoarAppkit.
    *
    * @param {AppkitInput} input
@@ -33,69 +33,88 @@ export class OfflineAppKit extends RoarAppkit {
     runId,
     testData,
     demoData,
-    parentUser,
+    parentUserInfo,
   }: AppkitInput) {
-      super({firebaseProject, firebaseConfig, userInfo, taskInfo, assigningOrgs, readOrgs, assignmentId, runId, testData, demoData});
-      this.parentUser = parentUser;
+    super({
+      firebaseProject,
+      firebaseConfig,
+      userInfo,
+      taskInfo,
+      assigningOrgs,
+      readOrgs,
+      assignmentId,
+      runId,
+      testData,
+      demoData,
+    });
+    this.parentUserInfo = parentUserInfo;
+  }
+
+  protected async _init() {
+    if (this.firebaseConfig) {
+      this.firebaseProject = await initializeFirebaseProject(
+        this.firebaseConfig,
+        "assessmentApp"
+      );
     }
 
-    protected async _init () {
-        if (this.firebaseConfig) {
-            this.firebaseProject = await initializeFirebaseProject(this.firebaseConfig, 'assessmentApp');
-          }
-      
-          onAuthStateChanged(this.firebaseProject!.auth, (user) => {
-            this._authenticated = Boolean(user);
-          });
-      
-          this.user = new RoarAppUser({
-            ...this._userInfo,
-            db: this.firebaseProject!.db,
-            // Use conditional spreading here to prevent overwriting testData or
-            // demoData from this._taskInfo. Only if the below values are true do we
-            // want to overwrite.
-            ...(this.testData.user && { testData: true }),
-            ...(this.demoData.user && { demoData: true }),
-          });
-          this.task = new RoarTaskVariant({
-            // Define testData and demoData first so that spreading this._taskInfo can
-            // overwrite them.
-            testData: {
-              task: this.testData.task,
-              variant: this.testData.variant,
-            },
-            demoData: {
-              task: this.demoData.task,
-              variant: this.demoData.variant,
-            },
-            ...this._taskInfo,
-            db: this.firebaseProject!.db,
-          });
-          this.run = new OfflineRun({
-            user: this.user,
-            task: this.task,
-            assigningOrgs: this._assigningOrgs,
-            readOrgs: this._readOrgs,
-            assignmentId: this._assignmentId,
-            runId: this._runId,
-            testData: this.testData.run,
-            demoData: this.demoData.run,
-          });
-          await this.user.init();
-          this._initialized = true;
+    onAuthStateChanged(this.firebaseProject!.auth, (user) => {
+      this._authenticated = Boolean(user);
+    });
+
+    console.log("userhello", this._userInfo);
+
+    this.user = new RoarAppUser({
+      ...this._userInfo,
+      db: this.firebaseProject!.db,
+      // Use conditional spreading here to prevent overwriting testData or
+      // demoData from this._taskInfo. Only if the below values are true do we
+      // want to overwrite.
+      ...(this.testData.user && { testData: true }),
+      ...(this.demoData.user && { demoData: true }),
+    });
+    this.task = new RoarTaskVariant({
+      // Define testData and demoData first so that spreading this._taskInfo can
+      // overwrite them.
+      testData: {
+        task: this.testData.task,
+        variant: this.testData.variant,
+      },
+      demoData: {
+        task: this.demoData.task,
+        variant: this.demoData.variant,
+      },
+      ...this._taskInfo,
+      db: this.firebaseProject!.db,
+    });
+    this.run = new OfflineRun({
+      user: this.user,
+      task: this.task,
+      assigningOrgs: this._assigningOrgs,
+      readOrgs: this._readOrgs,
+      assignmentId: this._assignmentId,
+      runId: this._runId,
+      testData: this.testData.run,
+      demoData: this.demoData.run,
+    });
+    await this.user.init();
+    this._initialized = true;
+  }
+
+  async startRun(additionalRunMetadata?: {
+    [key: string]: unknown;
+  }): Promise<boolean> {
+    console.log("start run called in offline appkitinit");
+    if (!this._initialized) {
+      await this._init();
     }
 
-    async startRun(additionalRunMetadata?: { [key: string]: unknown }): Promise<boolean> {
-        console.log("start run called in offline appkitinit")
-        if (!this._initialized) {
-            await this._init();
-          }
-      
-          if (!this.authenticated) {
-            throw new Error('User must be authenticated to start a run.');
-          }
-      
-          return this.run!.startRun(additionalRunMetadata).then(() => (this._started = true));
+    if (!this.authenticated) {
+      throw new Error("User must be authenticated to start a run.");
     }
 
+    return this.run!.startRun(additionalRunMetadata).then(
+      () => (this._started = true)
+    );
+  }
 }
