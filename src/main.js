@@ -1,7 +1,5 @@
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
-// import { createHead } from '@unhead/vue';
-// import { initSentry } from '@/sentry';
 import router from '@/router/index.js';
 import App from '@/App.vue';
 
@@ -84,7 +82,6 @@ const pinia = createPinia();
 //   v3SiteKey: '6Lc-LXsnAAAAAHGha6zgn0DIzgulf3TbGDhnZMAd',
 // });
 
-// initSentry(app);
 
 app.use(PrimeVue, { ripple: true });
 app.use(ToastService);

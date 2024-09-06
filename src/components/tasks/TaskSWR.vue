@@ -120,10 +120,13 @@
   
       const gameParams = { ...appKit._taskInfo.variantParams };
       console.log("made it past game params")
+
+      console.log("this is the taskaluncher", TaskLauncher)
   
       const roarApp = new TaskLauncher(appKit, gameParams, userParams, 'jspsych-target');
   
       await roarApp.run().then(async () => {
+        console.log("made it past run")
         // Handle any post-game actions.
         await authStore.completeAssessment(tempSelectedAdmin, taskId);
   

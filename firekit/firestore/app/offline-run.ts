@@ -37,16 +37,16 @@ export class OfflineRun extends RoarRun {
     this.parentUser= parentUser;
 
     // set runRef to parent user's userRun collection
-    // if(runId) {
-    //     // this.runRef = this.parentUser?.userRef.collection('userRuns').doc(user.userRef).collection('runs').doc(runId);   
-    //     this.parentUserRef = doc()
-    //     this.runRef = doc(this.parentUser!.userRef, 'runs', runId);
-    //     // this.runRef = this.parentUser?.userRef.doc(runId);   
-    // }
-    // else {
-    //     this.runRef = doc(collection(this.parentUser!.userRef, 'runs'));
-    //     // this.runRef = this.parentUser?.userRef.collection('userRuns').doc(user.userRef).collection('runs').doc();
-    // }
+    if(runId) {
+      // write to the parent user's user collection, under a collection named 'userRuns'. under the user's runs collection
+      this.runRef = doc(collection(this.parentUser.userRef, `offline-runs-for-${user.roarUid}`))
+        // this.runRef = this.parentUser?.userRef.doc(runId);   
+    }
+    else {
+      this.runRef = doc(this.parentUser.userRef, 'offline-runs', 'testrun1')
+        // this.runRef = doc(collection(this.parentUser!.userRef, 'runs'));
+        // this.runRef = this.parentUser?.userRef.collection('userRuns').doc(user.userRef).collection('runs').doc();
+    }
   }
 
     /**
