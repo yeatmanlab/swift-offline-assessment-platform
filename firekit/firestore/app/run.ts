@@ -16,7 +16,7 @@ import _pick from 'lodash/pick';
 import _set from 'lodash/set';
 import dot from 'dot-object';
 import { RoarTaskVariant } from './task';
-import { RoarAppUser } from './user';
+import { RoarAppUser, UserInfo } from './user';
 import { OrgLists } from '../../interfaces';
 import { removeUndefined } from '../util';
 import { FirebaseError } from '@firebase/util';
@@ -75,6 +75,7 @@ export interface RunScores {
 
 export interface RunInput {
   user: RoarAppUser;
+  parentUser?: RoarAppUser;
   task: RoarTaskVariant;
   assigningOrgs?: OrgLists;
   readOrgs?: OrgLists;
@@ -82,7 +83,6 @@ export interface RunInput {
   runId?: string;
   testData?: boolean;
   demoData?: boolean;
-  parentUser?: RoarAppUser;
 }
 
 interface ScoreUpdate {

@@ -1,7 +1,7 @@
 import { arrayUnion, collection, doc, DocumentReference, getDoc, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore';
 import { RoarRun, RunInput, RunScores } from './run';
 import { RoarTaskVariant } from './task';
-import { RoarAppUser } from './user';
+import { RoarAppUser, UserInfo } from './user';
 import { OrgLists } from '../../interfaces';
 import _intersection from 'lodash/intersection';
 import _mapValues from 'lodash/mapValues';
@@ -10,7 +10,8 @@ import _set from 'lodash/set';
 import { removeUndefined } from '../util';
 
 export class OfflineRun extends RoarRun {
-  parentUser?: RoarAppUser;
+  parentUserInfo?: UserInfo;
+  parentUser: RoarAppUser;
   /** Create a ROAR run
    * @param {RunInput} input
    * @param {RoarAppUser} input.user - The user running the task
@@ -24,6 +25,7 @@ export class OfflineRun extends RoarRun {
    */
   constructor({
     user,
+    parentUser,
     task,
     assigningOrgs,
     readOrgs,
@@ -31,22 +33,21 @@ export class OfflineRun extends RoarRun {
     runId,
     testData = false,
     demoData = false,
-    parentUserInfo,
   }: RunInput) {;
     super({user, task, assigningOrgs, readOrgs, assignmentId, runId, testData, demoData})
-    this.parentUser = parentUser;
+    this.parentUserInfo = parentUserInfo;
 
     // set runRef to parent user's userRun collection
-    if(runId) {
-        // this.runRef = this.parentUser?.userRef.collection('userRuns').doc(user.userRef).collection('runs').doc(runId);   
-        this.parentUserRef = doc()
-        this.runRef = doc(this.parentUser!.userRef, 'runs', runId);
-        // this.runRef = this.parentUser?.userRef.doc(runId);   
-    }
-    else {
-        this.runRef = doc(collection(this.parentUser!.userRef, 'runs'));
-        // this.runRef = this.parentUser?.userRef.collection('userRuns').doc(user.userRef).collection('runs').doc();
-    }
+    // if(runId) {
+    //     // this.runRef = this.parentUser?.userRef.collection('userRuns').doc(user.userRef).collection('runs').doc(runId);   
+    //     this.parentUserRef = doc()
+    //     this.runRef = doc(this.parentUser!.userRef, 'runs', runId);
+    //     // this.runRef = this.parentUser?.userRef.doc(runId);   
+    // }
+    // else {
+    //     this.runRef = doc(collection(this.parentUser!.userRef, 'runs'));
+    //     // this.runRef = this.parentUser?.userRef.collection('userRuns').doc(user.userRef).collection('runs').doc();
+    // }
   }
 
     /**

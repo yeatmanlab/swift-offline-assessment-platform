@@ -1,7 +1,7 @@
 import { RoarFirekit } from './firekit';
 import { getTaskAndVariant } from './firestore/query-assessment';
 import { doc, runTransaction } from 'firebase/firestore';
-import { Assessment, AssignedAssessment } from './interfaces';
+import { Assessment, AssignedAssessment, UserType } from './interfaces';
 import { UserInfo, UserInput } from './firestore/app/user';
 import { OfflineAppKit } from './firestore/app/offline-appkit';
 
@@ -49,47 +49,10 @@ export class OfflineFirekit extends RoarFirekit {
     // temporarily commented out 
     // this._verifyAuthentication();
     const targetParticipantUserInfo:UserInfo = {
-      "db": {
-          "app": {
-              "_isDeleted": false,
-              "_options": {
-                  "apiKey": "AIzaSyDw0TnTXbvRyoVo5_oa_muhXk9q7783k_g",
-                  "authDomain": "roar.education",
-                  "projectId": "gse-roar-assessment",
-                  "storageBucket": "gse-roar-assessment.appspot.com",
-                  "messagingSenderId": "757277423033",
-                  "appId": "1:757277423033:web:d6e204ee2dd1047cb77268"
-              },
-              "_config": {
-                  "name": "app",
-                  "automaticDataCollectionEnabled": false
-              },
-              "_name": "app",
-              "_automaticDataCollectionEnabled": false,
-              "_container": {
-                  "name": "app",
-                  "providers": {}
-              }
-          },
-          "databaseId": {
-              "projectId": "gse-roar-assessment",
-              "database": "(default)"
-          },
-          "settings": {
-              "host": "firestore.googleapis.com",
-              "ssl": true,
-              "ignoreUndefinedProperties": false,
-              "cacheSizeBytes": 41943040,
-              "experimentalForceLongPolling": false,
-              "experimentalAutoDetectLongPolling": true,
-              "experimentalLongPollingOptions": {},
-              "useFetchStreams": true
-          }
-      },
-      "roarUid": "ctt3TIYA7kQN6BGs97fMTWg7ZAk2",
-      "assessmentUid": "5ZU8afI7lVYV29P58EQe18UdmDC2",
-      "assessmentPid": "OTG-c71fccea",
-      "userType": "student"
+      roarUid: "ctt3TIYA7kQN6BGs97fMTWg7ZAk2",
+      assessmentUid: "5ZU8afI7lVYV29P58EQe18UdmDC2",
+      assessmentPid: "OTG-c71fccea",
+      userType: UserType.student,
   }
 
     const appKit = await runTransaction(this.admin!.db, async (transaction) => {
