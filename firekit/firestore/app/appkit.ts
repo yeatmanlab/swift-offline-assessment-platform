@@ -29,6 +29,20 @@ export interface AppkitInput {
   demoData?: DataFlags;
 }
 
+export interface OfflineAppkitInput {
+  firebaseProject?: FirebaseProject;
+  firebaseConfig?: FirebaseConfig;
+  taskInfo: TaskVariantInfo;
+  userInfo?: UserInfo;
+  parentUserInfo: UserInfo;
+  assigningOrgs?: OrgLists;
+  readOrgs?: OrgLists;
+  assignmentId?: string;
+  runId?: string;
+  testData?: DataFlags;
+  demoData?: DataFlags;
+}
+
 /**
  * The RoarAppkit class is the main entry point for ROAR apps using the ROAR
  * Firestore API.  It represents multiple linked Firestore documents and

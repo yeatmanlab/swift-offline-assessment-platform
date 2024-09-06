@@ -75,7 +75,18 @@ export interface RunScores {
 
 export interface RunInput {
   user: RoarAppUser;
-  parentUser?: RoarAppUser;
+  task: RoarTaskVariant;
+  assigningOrgs?: OrgLists;
+  readOrgs?: OrgLists;
+  assignmentId?: string;
+  runId?: string;
+  testData?: boolean;
+  demoData?: boolean;
+}
+
+export interface OfflineRunInput {
+  user: RoarAppUser;
+  parentUser: RoarAppUser;
   task: RoarTaskVariant;
   assigningOrgs?: OrgLists;
   readOrgs?: OrgLists;

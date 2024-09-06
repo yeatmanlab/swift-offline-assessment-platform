@@ -1,5 +1,5 @@
 import { onAuthStateChanged } from "firebase/auth";
-import { AppkitInput, RoarAppkit } from "./appkit";
+import { AppkitInput, OfflineAppkitInput, RoarAppkit } from "./appkit";
 import { RoarAppUser, UserInfo, UserInput } from "./user";
 import { OfflineRun } from "./offline-run";
 import { RoarTaskVariant } from "./task";
@@ -7,7 +7,7 @@ import { initializeFirebaseProject } from "../util";
 import { getDownloadURL, ref } from "firebase/storage";
 
 export class OfflineAppKit extends RoarAppkit {
-  parentUserInfo?: UserInfo;
+  parentUserInfo: UserInfo;
   parentUser: RoarAppUser;
   // TODO: find out what functions i need to override with this class
   /**
@@ -35,7 +35,7 @@ export class OfflineAppKit extends RoarAppkit {
     runId,
     testData,
     demoData,
-  }: AppkitInput) {
+  }: OfflineAppkitInput) {
     super({
       firebaseProject,
       firebaseConfig,

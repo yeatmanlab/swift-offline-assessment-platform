@@ -1,5 +1,5 @@
 import { arrayUnion, collection, doc, DocumentReference, getDoc, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore';
-import { RoarRun, RunInput, RunScores } from './run';
+import { OfflineRunInput, RoarRun, RunInput, RunScores } from './run';
 import { RoarTaskVariant } from './task';
 import { RoarAppUser, UserInfo } from './user';
 import { OrgLists } from '../../interfaces';
@@ -10,7 +10,6 @@ import _set from 'lodash/set';
 import { removeUndefined } from '../util';
 
 export class OfflineRun extends RoarRun {
-  parentUserInfo?: UserInfo;
   parentUser: RoarAppUser;
   /** Create a ROAR run
    * @param {RunInput} input
@@ -33,9 +32,9 @@ export class OfflineRun extends RoarRun {
     runId,
     testData = false,
     demoData = false,
-  }: RunInput) {;
+  }: OfflineRunInput) {;
     super({user, task, assigningOrgs, readOrgs, assignmentId, runId, testData, demoData})
-    this.parentUserInfo = parentUserInfo;
+    this.parentUser= parentUser;
 
     // set runRef to parent user's userRun collection
     // if(runId) {
