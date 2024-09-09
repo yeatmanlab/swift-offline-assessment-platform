@@ -128,11 +128,11 @@
       await roarApp.run().then(async () => {
         console.log("made it past run")
         // Handle any post-game actions.
-        await authStore.completeAssessment(tempSelectedAdmin, taskId);
+        // await authStore.completeAssessment(tempSelectedAdmin, taskId);
   
         // Navigate to home, but first set the refresh flag to true.
-        gameStore.requireHomeRefresh();
-        router.push({ name: 'Home' });
+        // gameStore.requireHomeRefresh();
+        // router.push({ name: 'Home' });
       });
     } catch (error) {
       console.error('An error occurred while starting the task:', error);

@@ -131,14 +131,14 @@ export class OfflineRun extends RoarRun {
           ...(this.demoData && { demoData: true }),
         };
     
-        await setDoc(this.runRef, removeUndefined(runData))
-          .then(() => {
-            return updateDoc(this.user.userRef, {
-              tasks: arrayUnion(this.task.taskId),
-              variants: arrayUnion(this.task.variantId),
-            });
-          })
-          .then(() => this.user.updateFirestoreTimestamp());
+        // await setDoc(this.runRef, removeUndefined(runData))
+        //   .then(() => {
+        //     return updateDoc(this.user.userRef, {
+        //       tasks: arrayUnion(this.task.taskId),
+        //       variants: arrayUnion(this.task.variantId),
+        //     });
+        //   })
+        //   .then(() => this.user.updateFirestoreTimestamp());
     
         this.started = true;
       }

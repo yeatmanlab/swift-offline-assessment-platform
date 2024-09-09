@@ -1,4 +1,4 @@
-import { OfflineFirekit } from '../firekit/index';
+import { OfflineFirekit, RoarFirekit } from '../firekit/index';
 import roarFirebaseConfig from './config/firebaseRoar';
 import levanteFirebaseConfig from './config/firebaseLevante';
 
