@@ -36,16 +36,19 @@ export class OfflineRun extends RoarRun {
     super({user, task, assigningOrgs, readOrgs, assignmentId, runId, testData, demoData})
     this.parentUser= parentUser;
 
+      console.log("parent user is ", parentUser)
     // set runRef to parent user's userRun collection
     if(runId) {
       // write to the parent user's user collection, under a collection named 'userRuns'. under the user's runs collection
-      this.runRef = doc(collection(this.parentUser.userRef, `offline-runs-for-${user.roarUid}`))
+      this.runRef = doc(this.parentUser.userRef, 'offline-runs', runId);
+      // this.runRef = doc(collection(this.parentUser.userRef, `offline-runs-for-${user.roarUid}`))
+      console.log("constructor called, run ref is this.runRef", this.runRef)
         // this.runRef = this.parentUser?.userRef.doc(runId);   
     }
     else {
-      this.runRef = doc(this.parentUser.userRef, 'offline-runs', 'testrun1')
-        // this.runRef = doc(collection(this.parentUser!.userRef, 'runs'));
-        // this.runRef = this.parentUser?.userRef.collection('userRuns').doc(user.userRef).collection('runs').doc();
+      // this.runRef = doc(this.user.userRef, 'runs', runId);
+      this.runRef = doc(collection(this.parentUser.userRef, 'offline-runs'));
+      // this.runRef = doc(this.parentUser.userRef, 'offline-runs', 'testrun1') console.log("constructor called, run ref is this.runRef", this.runRef)
     }
   }
 
@@ -131,14 +134,14 @@ export class OfflineRun extends RoarRun {
           ...(this.demoData && { demoData: true }),
         };
     
-        // await setDoc(this.runRef, removeUndefined(runData))
-        //   .then(() => {
-        //     return updateDoc(this.user.userRef, {
-        //       tasks: arrayUnion(this.task.taskId),
-        //       variants: arrayUnion(this.task.variantId),
-        //     });
-        //   })
-        //   .then(() => this.user.updateFirestoreTimestamp());
+        await setDoc(this.runRef, removeUndefined(runData))
+          .then(() => {
+            return updateDoc(this.user.userRef, {
+              tasks: arrayUnion(this.task.taskId),
+              variants: arrayUnion(this.task.variantId),
+            });
+          })
+          .then(() => this.user.updateFirestoreTimestamp());
     
         this.started = true;
       }

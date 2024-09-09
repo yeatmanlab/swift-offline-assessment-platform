@@ -157,7 +157,7 @@ export class RoarRun {
     this.demoData = demoData;
 
     if (runId) {
-      this.runRef = doc(this.user.userRef, 'runs', runId);
+      this.runRef = doc(this.user.userRef, 'offline-runs', runId);
     } else {
       this.runRef = doc(collection(this.user.userRef, 'runs'));
     }
