@@ -6,25 +6,28 @@
   <div>
     and playing as offlinetestadmin4... hopefully
   </div>
-  <div>
-    <a href="/game/swr">swr</a>
-  </div>
-  <div>
-    <a href="/game/sre">sre</a>
-  </div>
   <button :onClick="loginUser">authenticate</button>
   <!-- <div v-if="userData"> -->
-  <div>
+  <!-- <div>
     <h1>user data:</h1>
     <pre>{{ authStore.userData }}</pre>
-  </div>
+  </div> -->
+  <!-- <div v-if="isAuthenticated"> -->
+    <h3> launch game as player </h3>
+    <input> player </input>
+    <a href='/play/${playerId}/swr'>swr</a>
   <!-- </div> -->
 </template>
 
 <script setup>
 import { useAuthStore } from "@/store/auth";
+import { ref } from "vue";
 
 const authStore = useAuthStore();
+const {isAuthenticated} = useAuthStore();
+
+const playerId = ref("123123123")
+
 
 const loginUser = () => {
   console.log("login user");

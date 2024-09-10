@@ -80,10 +80,14 @@ const pinia = createPinia();
 
 // app.use(VueRecaptchaPlugin, {
 //   v3SiteKey: '6Lc-LXsnAAAAAHGha6zgn0DIzgulf3TbGDhnZMAd',
-// });
+// })
+
+// translations
+import { i18n } from '@/translations/i18n.js';
 
 
 app.use(PrimeVue, { ripple: true });
+app.use(i18n);
 app.use(ToastService);
 app.use(ConfirmationService);
 app.use(pinia);

@@ -4,19 +4,30 @@ import { useAuthStore } from '@/store/auth';
 
 const routes = [
   {
+    path: '/signin',
+    name: 'Sign In',
+    component: () => import('../pages/SignIn.vue'),
+  },
+  {
+    // we should strive to keep the adminstrator in this mode for as long as possible (persisting auth)
     path: '/',
-    name: 'Home',
+    name: 'Authenticated Home',
     component: () => import('../pages/Home.vue'),
   },
   {
-    path: '/game/swr',
+    path: '/play/:playerId',
+    name: 'Participant Home',
+    component: () => import('../pages/ParticipantView.vue'),
+  },
+  {
+    path: '/play/:playerId/swr',
     name: 'SWR',
     component: () => import('../components/tasks/taskSWR.vue'),
     props: { taskId: 'swr', language: 'en' },
     meta: { pageTitle: 'SWR' },
   },
   {
-    path: '/game/sre',
+    path: '/play/:playerId/sre',
     name: 'SRE',
     component: () => import('../components/tasks/taskSRE.vue'),
     props: { taskId: 'sre', language: 'en' },
@@ -46,17 +57,6 @@ router.beforeEach(async (to, from, next) => {
 
   const store = useAuthStore();
 
-  const allowedUnauthenticatedRoutes = [
-    'SignIn',
-    'Maintenance',
-    'AuthClever',
-    'AuthClassLink',
-    'AuthEmailLink',
-    'AuthEmailSent',
-    'Register',
-  ];
-
-  const inMaintenanceMode = false;
 
 //   if (inMaintenanceMode && to.name !== 'Maintenance') {
 //     next({ name: 'Maintenance' });
