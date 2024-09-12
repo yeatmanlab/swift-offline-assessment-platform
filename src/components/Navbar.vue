@@ -4,17 +4,17 @@
   >
     <div>
       <h1
-        class="font-bold text-2xl text-white bg-red-900 rounded font-light px-3 py-1"
+        class="text-2xl text-white bg-red-900 rounded px-3 py-1"
       >
         roar offline
       </h1>
     </div>
-    <div class="flex flex-row justify-apart">
-      <div class="rounded bg-stone-400" v-if="email">
+    <div class="flex flex-row justify-apart gap-3">
+      <div class="rounded bg-stone-400 px-2 py-1" v-if="email">
         {{ email }}
       </div>
       <div v-if="uid">
-        <button :onClick="signOutUser">sign out</button>
+        <button class="bg-red-900 text-white rounded px-2 py-1":onClick="signOutUser">sign out</button>
       </div>
       <div v-else>
         <button :onClick="loginUser">authenticate</button>
