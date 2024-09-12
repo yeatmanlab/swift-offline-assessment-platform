@@ -5,7 +5,7 @@ import App from '@/App.vue';
 
 import PrimeVue from 'primevue/config';
 
-// // PrimeVue component imports
+// // // PrimeVue component imports
 // import PvAccordion from 'primevue/accordion';
 // import PvAccordionTab from 'primevue/accordiontab';
 // import PvAutoComplete from 'primevue/autocomplete';
@@ -63,14 +63,18 @@ import PrimeVue from 'primevue/config';
 // import PvColumnGroup from 'primevue/columngroup';
 // import PvRow from 'primevue/row';
 
-// // PrimeVue directive imports
+// // // PrimeVue directive imports
 // import PvTooltip from 'primevue/tooltip';
 
-// PrimeVue service imports
-import ConfirmationService from 'primevue/confirmationservice';
-import ToastService from 'primevue/toastservice';
+// // PrimeVue service imports
+// import ConfirmationService from 'primevue/confirmationservice';
+// import ToastService from 'primevue/toastservice';
 
 import { VueQueryPlugin } from '@tanstack/vue-query';
+
+// import tailwind bindings
+import './index.css'
+
 // import VueGoogleMaps from 'vue-google-maps-community-fork';
 
 // Begin the app!
@@ -86,10 +90,10 @@ const pinia = createPinia();
 import { i18n } from '@/translations/i18n.js';
 
 
-app.use(PrimeVue, { ripple: true });
+// app.use(PrimeVue, { ripple: true });
 app.use(i18n);
-app.use(ToastService);
-app.use(ConfirmationService);
+// app.use(ToastService);
+// app.use(ConfirmationService);
 app.use(pinia);
 app.use(router);
 // app.use(VueGoogleMaps, {

@@ -24,7 +24,7 @@
         </footer>
       </section>
     </div>
-    <!-- <RoarModal
+    <RoarModal
       :is-enabled="warningModalOpen"
       title="Email is already associated with an account"
       subtitle=""
@@ -91,7 +91,7 @@
           @click="handleWarningModalClose"
         ></PvButton>
       </template>
-    </RoarModal> -->
+    </RoarModal>
   </template>
   
   <script setup>
@@ -103,7 +103,7 @@
   import { useAuthStore } from '@/store/auth';
   import { isMobileBrowser } from '@/helpers';
   import { fetchDocById } from '../helpers/query/utils';
-//   import RoarModal from '../components/modals/RoarModal.vue';
+  import RoarModal from '../components/modals/RoarModal.vue';
   
   const incorrect = ref(false);
   const isLevante = import.meta.env.MODE === 'LEVANTE';
