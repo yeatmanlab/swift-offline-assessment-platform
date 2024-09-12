@@ -17,17 +17,17 @@ const routes = [
   {
     path: '/play/:playerId',
     name: 'Participant Home',
-    component: () => import('../pages/ParticipantView.vue'),
+    component: () => import('../pages/TaskLauncher.vue'),
   },
   {
-    path: '/play/:playerId/swr',
+    path: '/play/:playerId/task/swr',
     name: 'SWR',
     component: () => import('../components/tasks/taskSWR.vue'),
     props: { taskId: 'swr', language: 'en' },
     meta: { pageTitle: 'SWR' },
   },
   {
-    path: '/play/:playerId/sre',
+    path: '/play/:playerId/task/sre',
     name: 'SRE',
     component: () => import('../components/tasks/taskSRE.vue'),
     props: { taskId: 'sre', language: 'en' },

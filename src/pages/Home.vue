@@ -6,7 +6,7 @@
       <PlayerLauncher/>
     </div>
     <div v-else-if="viewMode == 'playGame'">
-      <TaskPicker/>
+      <TaskLauncher/>
     </div>
     <div v-else-if="viewMode == 'returnToAdmin'">
       <AdminInterchange/>
@@ -19,7 +19,7 @@
 import { ref } from "vue";
 import NavBar from "@/components/NavBar.vue";
 import PlayerLauncher from "@/components/PlayerLauncher.vue";
-import TaskPicker from "@/components/TaskPicker.vue";
+import TaskLauncher from "@/components/TaskLauncher.vue";
 import AdminInterchange from "@/components/AdminInterchange.vue";
 
 

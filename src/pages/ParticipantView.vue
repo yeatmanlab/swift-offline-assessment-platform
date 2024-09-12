@@ -7,10 +7,17 @@
         and playing as offlinetestadmin4... hopefully
     </div>
     <div>
-        <a href="/game/swr">swr</a>
+        <button href="/game/swr">
+            swr
+        </a>
     </div>
     <div>
         <a href="/game/sre">sre</a>
     </div>
     <!-- </div> -->
 </template>
+
+<script setup>
+import Navbar from "@/components/Navbar.vue";
+
+</script>
