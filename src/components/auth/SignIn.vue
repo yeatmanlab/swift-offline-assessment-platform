@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col items-center content-center">
-    <form class="p-fluid">
+    <form class="p-fluid" @submit="handleFormSubmit">
       <div class="field mt-2">
         <div class="p-input-icon-right">
           <input

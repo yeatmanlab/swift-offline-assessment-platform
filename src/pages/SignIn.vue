@@ -9,22 +9,22 @@
     <section id="signin">
       <header>
         <div class="signin-logo">
-          <PvImage
+          <!-- <img
             v-if="isLevante"
             src="/LEVANTE/Levante_Logo.png"
             alt="LEVANTE Logo"
             width="200"
-          />
-          <ROARLogoShort v-else />
+          /> -->
+          <ROARLogoShort />
         </div>
       </header>
       <h1 v-if="!isLevante">{{ $t("pageSignIn.welcome") }}</h1>
       <section class="signin-options">
         <section class="signin-option-container signin-option-userpass">
           <h4 class="signin-option-title">{{ $t("pageSignIn.login") }}</h4>
-          <div id="languageSelect" class="m-4 flex justify-content-center">
+          <!-- <div id="languageSelect" class="m-4 flex justify-content-center">
             <LanguageSelector />
-          </div>
+          </div> -->
           <SignIn
             :invalid="incorrect"
             @submit="authWithEmail"
@@ -132,6 +132,7 @@ const warningModalOpen = ref(false);
 
 authStore.$subscribe(() => {
   if (authStore.uid) {
+    console.log("home")
     //   if (authStore.userData && isLevante) {
     //     if (
     //       toRaw(authStore.userData?.userType?.toLowerCase()) === 'parent' ||
@@ -158,13 +159,14 @@ const modalPassword = ref("");
 
 const authWithEmail = (state) => {
   console.log("auth with email called")
-  authStore
-    .logInWithEmailAndPassword({
-      email: "testingUser4@roar-auth.com",
-      password: "password4",
-    })
+  authStore.logInWithEmailAndPassword({
+    email: "testofflineadmin1@roar-auth.com",
+    password: "testofflineadminpw",
+  })
     .then(async () => {
+      console.log("auth with email called in then in authwithemail", authStore)
       if (authStore.uid) {
+        console.log("returned uid", authStore.uid)
         const userData = await fetchDocById("users", authStore.uid);
         const userClaims = await fetchDocById("userClaims", authStore.uid);
         authStore.userData = userData;
@@ -232,18 +234,6 @@ const displaySignInMethods = computed(() => {
     if (method === "clever") return "Clever";
     if (method === "classlink") return "ClassLink";
   });
-});
-
-onMounted(() => {
-  document.body.classList.add("page-signin");
-  if (authStore.cleverOAuthRequested) {
-    authStore.cleverOAuthRequested = false;
-    authWithClever();
-  }
-  if (authStore.classLinkOAuthRequested) {
-    authStore.classLinkOAuthRequested = false;
-    authWithClassLink();
-  }
 });
 
 onBeforeUnmount(() => {

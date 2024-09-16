@@ -73,15 +73,16 @@ router.beforeEach(async (to, from, next) => {
 
   const allowedUnauthenticatedRoutes = [
     'SignIn',
+    'Home',
     'Register',
   ];
   // Check if user is signed in. If not, go to signin
-  if (!store.isAuthenticated &&
-    !allowedUnauthenticatedRoutes.includes(to.name)
-  ) {
-    next({ name: "SignIn" });
-    return;
-  }
+  // if (!store.isAuthenticated &&
+  //   !allowedUnauthenticatedRoutes.includes(to.name)
+  // ) {
+  //   next({ name: "SignIn" });
+  //   return;
+  // }
 
   // Check if the route requires admin rights and the user is an admin.
   const requiresAdmin = _get(to, "meta.requireAdmin", false);
@@ -90,6 +91,7 @@ router.beforeEach(async (to, from, next) => {
   // Check user roles
   const isUserAdmin = store.isUserAdmin;
   const isUserSuperAdmin = store.isUserSuperAdmin;
+  console.log("st0oreadmin", store);
 
   // All current conditions:
   // 1. Super Admin: true, Admin: true

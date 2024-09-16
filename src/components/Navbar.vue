@@ -11,10 +11,10 @@
     </div>
     <!-- Account and Mode Info -->
     <div class="flex flex-row justify-apart gap-3">
-      <div class="rounded bg-stone-100 px-2 py-1" v-if="email">
-        {{ email }}
+      <div class="rounded bg-stone-100 px-2 py-1" v-if="authStore.email">
+        {{ authStore.email }}
       </div>
-      <div v-if="uid">
+      <div v-if="authStore.uid">
         <button
           class="bg-red-900 text-white rounded px-2 py-1"
           :onClick="signOutUser"
@@ -51,7 +51,7 @@ const loginUser = () => {
   }
 
   authStore.logInWithEmailAndPassword({
-    email: "testofflineadmin4@roar-auth.com",
+    email: "testofflineadmin1@roar-auth.com",
     password: "testofflineadminpw",
   });
   console.log(authStore);
