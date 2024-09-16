@@ -13,7 +13,7 @@
           Launch a Player
         </button>
       </a>
-      <a href="/play" class="">
+      <a href="/runs" class="">
         <button class="bg-red-900 text-white rounded px-2 py-3">
          View existing runs 
         </button>

@@ -39,6 +39,12 @@ const routes = [
     props: { taskId: "sre", language: "en" },
     meta: { pageTitle: "SRE" },
   },
+  {
+    // we should strive to keep the adminstrator in this mode for as long as possible (persisting auth)
+    path: "/runs",
+    name: "ViewRuns",
+    component: () => import("../pages/ViewRuns.vue"),
+  },
 ];
 
 const router = createRouter({

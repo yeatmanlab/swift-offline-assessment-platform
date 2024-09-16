@@ -4,17 +4,44 @@
   >
     <!-- ROAR LOGO -->
     <div class="flex gap-3">
-      <div class="flex items-center gap-1 text-white bg-red-900 rounded px-3 py-1">
+      <div
+        class="flex items-center gap-1 text-white bg-red-900 rounded px-3 py-1"
+      >
         <div class="text-xl font-bold">ROAR</div>
         <div class="text-xl font-light">Offline</div>
       </div>
     </div>
     <!-- Account and Mode Info -->
     <div class="flex flex-row justify-apart gap-3">
-      <div class="rounded bg-stone-100 px-2 py-1" v-if="authStore.email">
+      <div v-if="authStore.uid" class="flex items-center uppercase font-light">
+        <div class="uppercase font-light text-xs mr-3">mode</div>
+        <div v-if="routeParams.playerId">
+          <div
+            class="rounded bg-stone-100 px-2 py-1 bg-blue-800 font-bold text-white"
+          >
+            Player
+          </div>
+        </div>
+        <div v-else>
+          <div class="rounded bg-stone-100 px-2 py-1 bg-orange-700 font-bold text-white">
+            Admin
+          </div>
+        </div>
+      </div>
+      <div v-if="routeParams.playerId">
+        <div class="rounded bg-stone-100 px-2 py-1">
+          {{ routeParams.playerId }}
+        </div>
+      </div>
+      <div class="rounded bg-stone-100 px-2 py-1" v-else-if="authStore.email">
         {{ authStore.email }}
       </div>
-      <div v-if="authStore.uid">
+      <div v-if="routeParams.playerId">
+        <button class="bg-red-900 text-white rounded px-2 py-1">
+          <a href="/admin-interchange"> Return to Admin Mode </a>
+        </button>
+      </div>
+      <div v-else-if="authStore.uid">
         <button
           class="bg-red-900 text-white rounded px-2 py-1"
           :onClick="signOutUser"
@@ -32,6 +59,14 @@
 <script setup>
 import { useAuthStore } from "@/store/auth";
 import { ref } from "vue";
+import { useRoute } from "vue-router";
+
+const props = defineProps({
+  mode: { type: String, required: false, default: "admin" },
+});
+
+const route = useRoute();
+const routeParams = route.params;
 
 const authStore = useAuthStore();
 const { uid, email } = useAuthStore();

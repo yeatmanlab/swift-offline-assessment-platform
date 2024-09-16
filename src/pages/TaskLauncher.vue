@@ -1,30 +1,35 @@
 <template>
-  <Navbar />
-  <div class="flex flex-col justify-center align-center p-5 gap-3">
-    <div class="font-bold text-3xl">Pick task to play </div>
+  <Navbar mode="player" />
+  <div class="page-wrapper">
+    <div></div>
+    <div class="font-bold text-3xl mb-6">Pick task to play</div>
     <div class="flex flex-col gap-3">
-      <div class="flex flex-col align-center justify-center bg-stone-100">
-        <div class="flex flex-col">
+      <div
+        class="flex flex-col align-center justify-center bg-stone-100 gap-3 p-5 rounded"
+      >
+        <div class="flex flex-col gap-3">
           <div class="text-2xl font-bold">ROAR Apps</div>
-          <ul>
-            <li>
+          <div class="flex flex-col gap-3">
+            <button class="bg-red-900 text-white rounded px-2 py-3">
               <a href="/play/teak1023/task/swr">ROAR - SWR</a>
-            </li>
-            <li>
+            </button>
+            <button class="bg-red-900 text-white rounded px-2 py-3">
               <a href="/play/teak1023/task/sre">ROAR - SRE</a>
-            </li>
-          </ul>
+            </button>
+          </div>
         </div>
-        <div class="flex flex-col align-center justify-center bg-stone-100">
+        <div
+          class="flex flex-col align-center justify-center bg-stone-100 gap-3"
+        >
           <div class="text-2xl font-bold">Levante Apps</div>
-          <ul>
-            <li>
-              <a href="/play/teak1023/task/swr">LEVANTE - Swr</a>
-            </li>
-            <li>
-              <a href="/play/teak1023/task/sre">LEVANTE - Swr</a>
-            </li>
-          </ul>
+          <div class="flex flex-col gap-3">
+              <button class="bg-red-900 text-white rounded px-2 py-3">
+                <a href="/play/teak1023/task/swr">LEVANTE - Swr</a>
+              </button>
+              <button class="bg-red-900 text-white rounded px-2 py-3">
+                <a href="/play/teak1023/task/sre">LEVANTE - SRE</a>
+              </button>
+            </div>
         </div>
       </div>
     </div>
