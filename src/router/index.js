@@ -15,6 +15,11 @@ const routes = [
     component: () => import("../pages/Home.vue"),
   },
   {
+    path: "/play/admin-interchange",
+    name: "AdminInterchange",
+    component: () => import("../pages/AdminInterchange.vue"),
+  },
+  {
     // we should strive to keep the adminstrator in this mode for as long as possible (persisting auth)
     path: "/play",
     name: "PlayerLauncher",
