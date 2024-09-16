@@ -31,7 +31,7 @@ import PrimeVue from 'primevue/config';
 // import PvInputGroup from 'primevue/inputgroup';
 // import PvInputNumber from 'primevue/inputnumber';
 // import PvInputSwitch from 'primevue/inputswitch';
-// import PvInputText from 'primevue/inputtext';
+import PvInputText from 'primevue/inputtext';
 // import PvKnob from 'primevue/knob';
 // import PvListbox from 'primevue/listbox';
 // import PvMenu from 'primevue/menu';
