@@ -2,36 +2,46 @@
   <Navbar mode="player" />
   <div class="page-wrapper">
     <div class="mb-6">
-      <div class="font-bold text-3xl">🧼 Your Soapbox</div>
-      <div class="font-light text-sm">Choose a task to play</div>
+      <div class="font-bold text-3xl">📖 {{ playerId }}'s Homepage</div>
     </div>
     <div class="flex flex-col gap-3">
       <div
         class="flex flex-col align-center justify-center bg-stone-100 gap-3 p-5 rounded"
       >
-        <div class="flex flex-col gap-3">
-          <div class="text-xl font-bold">ROAR Apps</div>
+      <div class="font-bold text-xl">Tasks List</div>
+      <div class="text-md">Please choose from the available tasks below: </div>
+        <div class="flex flex-col gap-3 border rounded border-red-800 p-4">
+          <div class="text-lg font-bold">ROAR Apps</div>
           <div class="flex flex-col gap-3">
             <a :href="'/play/' + playerId + '/task/swr'">
-              <button class="btn-primary">ROAR - SWR</button>
+              <button class="btn-ghost">ROAR - SWR</button>
             </a>
             <a :href="'/play/' + playerId + '/task/sre'">
-              <button class="btn-primary">ROAR - SRE</button>
+              <button class="btn-ghost">ROAR - SRE</button>
             </a>
           </div>
         </div>
         <div
-          class="flex flex-col align-center justify-center bg-stone-100 gap-3"
+          class="flex flex-col align-center justify-center border p-5 rounded border-red-800 gap-3"
         >
-          <div class="text-xl font-bold">Levante Apps</div>
+          <div class="text-lg font-bold">Levante Apps</div>
           <div class="flex flex-col gap-3">
             <a href="/play/teak1023/task/swr">
-              <button class="btn-primary">LEVANTE - Swr</button>
+              <button class="btn-ghost">LEVANTE - Swr</button>
             </a>
             <a href="/play/teak1023/task/sre">
-              <button class="btn-primary">LEVANTE - SRE</button>
+              <button class="btn-ghost">LEVANTE - SRE</button>
             </a>
           </div>
+        </div>
+      </div>
+      <div
+        class="flex flex-col align-center justify-center bg-stone-100 gap-3 p-5 rounded"
+      >
+      <div class="font-bold text-xl">View my runs</div>
+      <div class="text-md">Here are runs that have been completed on this account: </div>
+        <div class="flex flex-col gap-3 border rounded border-red-800 p-4">
+          No runs at the moment.
         </div>
       </div>
     </div>

@@ -21,11 +21,11 @@
      Not what you meant to do? 
             </div>
             <div>
-                <button class="btn-primary">
                     <a :href="'/play/' + playerId">
-                        ⬅️ Back to Player Mode  
-                    </a>
+                <button class="btn-primary">
+                        ️ Back to Player Mode  ⤶
                 </button>
+                    </a>
             </div>
     <!-- <input> </input> -->
         </div>

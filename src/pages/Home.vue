@@ -3,29 +3,29 @@
     <NavBar />
     <div class="page-wrapper ">
       <div class="text-lg mb-3 font-bold">
-        Welcome to the ROAR Offline Assessment platform! 
-        <div class="text-md font-light">
+        Welcome to the Swift Offline Assessment platform, or ⓈⓄⒶⓅ for short! 
+        <div class="text-sm font-light">
 
         Please choose from a
         list of functions below.
 
-        admin uid: 4shlrC4eJMZO3voP0QDyKKztLVo1
 
         </div>
       </div>
 
-      <div class="flex flex-col gap-3 items-center text-xl bg-stone-200 rounded py-8">
+      <div class="flex flex-col gap-3 items-center text-xl bg-stone-100 rounded py-8">
       <a href="/play" class="">
-        <button class="bg-red-900 text-white rounded px-2 py-3">
-          Launch a Player
+        <button class="btn-ghost">
+           Launch a Player
         </button>
       </a>
       <a href="/runs" class="">
-        <button class="bg-red-900 text-white rounded px-2 py-3">
+        <button class="btn-ghost">
          View existing runs 
         </button>
       </a>
       </div>
+        admin uid: 4shlrC4eJMZO3voP0QDyKKztLVo1
     </div>
   </div>
 </template>

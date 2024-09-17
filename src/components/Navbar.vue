@@ -5,7 +5,7 @@
     <!-- ROAR LOGO -->
     <div class="flex gap-3">
       <button
-        class="btn-primary gap-1 flex flex-col items-center"
+        class="btn-ghost gap-1 flex flex-col items-center"
         :onClick="handleHomeRoute"
       >
         <div class="text-2xl font-bold">🧼 ⓈⓄⒶⓅ</div>
@@ -30,20 +30,18 @@
                 id="backToAdminButton"
                 class="text-sm font-bold text-stone-100"
               >
-              ⤶ Return to Admin?
+              Return to Admin? ⤶
               </div>
               <div id="playerLabel" class="uppercase text-sm">Player</div>
             </div></a
           >
         </div>
         <div v-else>
-          <a href="/play">
             <div
               class="rounded text-stone-100 px-2 py-1 bg-orange-700 font-bold text-white uppercase"
             >
               Admin
             </div>
-          </a>
         </div>
         <div class="font-light text-xs text-stone-400 uppercase">mode</div>
       </div>
@@ -65,7 +63,7 @@
       <div v-if="routeParams?.playerId">
       </div>
       <div v-else-if="authStore.isAuthenticated">
-        <button class="btn-primary" :onClick="signOutUser">Sign out</button>
+        <button class="btn-ghost" :onClick="signOutUser">Sign out</button>
       </div>
       <div v-else>
         <button :onClick="loginUser" class="btn-primary">Sign in</button>
