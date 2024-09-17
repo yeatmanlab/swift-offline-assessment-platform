@@ -6,24 +6,24 @@
         <div class="">
     <div class="font-light"> return to admin? enter your password </div>
     <div class="flex gap-3 my-5">
-    <input placeholder="password" v-model="passwordInput">  </input> 
-    <button class="bg-red-900 text-white rounded px-3 py-1" :onClick="checkPassword"> 
+    <input placeholder="password" class="px-3 rounded" v-model="passwordInput">  </input> 
+    <button class="btn-primary" :onClick="checkPassword"> 
         Submit
         </button>
         <div v-if="incorrectPassword"> 
             <div class="text-red-900"> Incorrect Password </div>
             </div>
     </div>
-    <div class="bg-stone-300 w-full text-stone-300 rounded"> -----  </div>
+    <hr/>
     </div>
-        <div class="my-5 flex flex-col gap-1">
-            <div class="font-light text-lg">
+        <div class="my-5 flex flex-col gap-3">
+            <div class="font-light text-md">
      Not what you meant to do? 
             </div>
             <div>
-                <button class="bg-red-900 text-white rounded px-3 py-1">
+                <button class="btn-primary">
                     <a :href="'/play/' + playerId">
-     go back to player mode  
+                        ⬅️ Back to Player Mode  
                     </a>
                 </button>
             </div>
@@ -53,7 +53,7 @@ const checkPassword = () => {
 }
 
 const incorrectPassword = ref(false)
-const password = ref("lmfglmfglmfg")
+const password = ref("lmfg")
 const passwordInput = ref("")
 const route = useRoute();
 const { playerId } = route.params;

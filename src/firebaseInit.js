@@ -5,7 +5,7 @@ import levanteFirebaseConfig from './config/firebaseLevante';
 const roarConfig = import.meta.env.MODE === 'LEVANTE' ? levanteFirebaseConfig : roarFirebaseConfig;
 
 export async function initNewFirekit() {
-  const firekit = new RoarFirekit({
+  const firekit = new OfflineFirekit({
     roarConfig,
     authPersistence: 'local',
     markRawConfig: {

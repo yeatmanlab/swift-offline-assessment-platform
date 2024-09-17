@@ -4,43 +4,59 @@
   >
     <!-- ROAR LOGO -->
     <div class="flex gap-3">
-      <button class="btn-primary gap-1 flex items-center">
+      <button class="btn-primary gap-1 flex items-center" :onClick="handleHomeRoute">
         <div class="text-xl font-bold">ROAR</div>
         <div class="text-xl font-light">Offline</div>
       </button>
     </div>
     <!-- Account and Mode Info -->
-    <div class="flex flex-row justify-apart items-center gap-3">
-      <div v-if="authStore.uid" class="flex items-center uppercase font-light">
-        <div class="uppercase font-light text-xs mr-3">mode</div>
-        <div v-if="routeParams.playerId">
+    <div class="flex justify-apart items-start gap-3">
+      <div
+        v-if="authStore.uid"
+        class="flex flex-col gap-1 items-end justify-end"
+      >
+        <div v-if="routeParams.playerId" id="playerButton">
           <a :href="'/play/' + routeParams.playerId + '/admin-interchange'">
             <div
-              class="rounded text-stone-100 px-2 py-1 bg-blue-800 font-bold text-white"
+              class="rounded text-stone-100 px-2 py-1 bg-blue-800 font-bold text-white "
             >
+              <div
+                id="backToAdminButton"
+                class="font-light font-xs text-stone-100"
+              >
+              ⬅️ Return to Admin?
+              </div>
+              <div id="playerLabel" class="uppercase">
               Player
+              </div>
             </div></a
           >
         </div>
         <div v-else>
           <a href="/play">
             <div
-              class="rounded text-stone-100 px-2 py-1 bg-orange-700 font-bold text-white"
+              class="rounded text-stone-100 px-2 py-1 bg-orange-700 font-bold text-white uppercase"
             >
               Admin
             </div>
           </a>
         </div>
+        <div class="font-light text-xs text-stone-400 uppercase">mode</div>
       </div>
-      <div v-if="routeParams.playerId">
+      <div v-if="routeParams.playerId" class="flex flex-col items-end gap-1">
         <div class="rounded bg-stone-100 px-2 py-1">
           {{ routeParams.playerId }}
         </div>
+        <div class="text-xs uppercase font-light text-stone-400">username</div>
       </div>
-      <div class="rounded bg-stone-100 px-2 py-1" v-else-if="authStore.email">
-        {{ authStore.email }}
+      <div class="flex flex-col items-end gap-1" v-else-if="authStore.email">
+        <div class="rounded bg-stone-100 px-2 py-1 text-stone-600">
+          {{ authStore.email }}
+        </div>
+        <div class="text-xs uppercase font-light text-stone-400">email</div>
       </div>
-      <div v-if="authStore.uid">
+      <div v-if="routeParams.playerId" class=""></div>
+      <div v-else-if="authStore.uid">
         <button class="btn-primary" :onClick="signOutUser">Sign out</button>
       </div>
       <div v-else>
@@ -64,11 +80,11 @@ const routeParams = route.params;
 
 const authStore = useAuthStore();
 
-const handleNavigateHome = () => {
+const handleHomeRoute= () => {
   if (routeParams.playerId) {
     window.location = "/play/" + routeParams.playerId;
   } else {
-    window.location = "/play";
+    window.location = "/";
   }
 };
 
@@ -87,3 +103,16 @@ const loginUser = () => {
   });
 };
 </script>
+
+<style>
+#backToAdminButton {
+  display: none;
+}
+
+#playerButton:hover #backToAdminButton {
+  display: block;
+}
+#playerButton:hover #playerLabel {
+  display: none;
+}
+</style>

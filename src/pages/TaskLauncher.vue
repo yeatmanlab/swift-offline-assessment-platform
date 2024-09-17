@@ -11,10 +11,10 @@
           <div class="text-2xl font-bold">ROAR Apps</div>
           <div class="flex flex-col gap-3">
             <button class="bg-red-900 text-white rounded px-2 py-3">
-              <a href="/play/teak1023/task/swr">ROAR - SWR</a>
+              <a :href="'/play/' + playerId + '/task/swr'">ROAR - SWR</a>
             </button>
             <button class="bg-red-900 text-white rounded px-2 py-3">
-              <a href="/play/teak1023/task/sre">ROAR - SRE</a>
+              <a :href="'/play/' + playerId + '/task/sre'">ROAR - SRE</a>
             </button>
           </div>
         </div>
@@ -38,4 +38,8 @@
 
 <script setup>
 import Navbar from "@/components/Navbar.vue";
+import { useRoute } from "vue-router";
+const route = useRoute();
+const { playerId } = route.params;
+
 </script>
