@@ -15,7 +15,7 @@ const routes = [
     component: () => import("../pages/Home.vue"),
   },
   {
-    path: "/play/admin-interchange",
+    path: "/play/:playerId/admin-interchange",
     name: "AdminInterchange",
     component: () => import("../pages/AdminInterchange.vue"),
   },

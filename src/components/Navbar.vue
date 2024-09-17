@@ -16,16 +16,22 @@
       <div v-if="authStore.uid" class="flex items-center uppercase font-light">
         <div class="uppercase font-light text-xs mr-3">mode</div>
         <div v-if="routeParams.playerId">
-          <div
-            class="rounded bg-stone-100 px-2 py-1 bg-blue-800 font-bold text-white"
+          <a :href="'/play/' + routeParams.playerId + '/admin-interchange'">
+            <div
+              class="rounded bg-stone-100 px-2 py-1 bg-blue-800 font-bold text-white"
+            >
+              Player
+            </div></a
           >
-            Player
-          </div>
         </div>
         <div v-else>
-          <div class="rounded bg-stone-100 px-2 py-1 bg-orange-700 font-bold text-white">
-            Admin
-          </div>
+          <a href="/play">
+            <div
+              class="rounded bg-stone-100 px-2 py-1 bg-orange-700 font-bold text-white"
+            >
+              Admin
+            </div>
+          </a>
         </div>
       </div>
       <div v-if="routeParams.playerId">
