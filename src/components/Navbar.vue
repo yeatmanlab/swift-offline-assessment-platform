@@ -4,21 +4,19 @@
   >
     <!-- ROAR LOGO -->
     <div class="flex gap-3">
-      <div
-        class="flex items-center gap-1 text-white bg-red-900 rounded px-3 py-1"
-      >
+      <button class="btn-primary gap-1 flex items-center">
         <div class="text-xl font-bold">ROAR</div>
         <div class="text-xl font-light">Offline</div>
-      </div>
+      </button>
     </div>
     <!-- Account and Mode Info -->
-    <div class="flex flex-row justify-apart gap-3">
+    <div class="flex flex-row justify-apart items-center gap-3">
       <div v-if="authStore.uid" class="flex items-center uppercase font-light">
         <div class="uppercase font-light text-xs mr-3">mode</div>
         <div v-if="routeParams.playerId">
           <a :href="'/play/' + routeParams.playerId + '/admin-interchange'">
             <div
-              class="rounded bg-stone-100 px-2 py-1 bg-blue-800 font-bold text-white"
+              class="rounded text-stone-100 px-2 py-1 bg-blue-800 font-bold text-white"
             >
               Player
             </div></a
@@ -27,7 +25,7 @@
         <div v-else>
           <a href="/play">
             <div
-              class="rounded bg-stone-100 px-2 py-1 bg-orange-700 font-bold text-white"
+              class="rounded text-stone-100 px-2 py-1 bg-orange-700 font-bold text-white"
             >
               Admin
             </div>
@@ -42,21 +40,11 @@
       <div class="rounded bg-stone-100 px-2 py-1" v-else-if="authStore.email">
         {{ authStore.email }}
       </div>
-      <div v-if="routeParams.playerId">
-        <button class="bg-red-900 text-white rounded px-2 py-1">
-          <a href="/admin-interchange"> Return to Admin Mode </a>
-        </button>
-      </div>
-      <div v-else-if="authStore.uid">
-        <button
-          class="bg-red-900 text-white rounded px-2 py-1"
-          :onClick="signOutUser"
-        >
-          sign out
-        </button>
+      <div v-if="authStore.uid">
+        <button class="btn-primary" :onClick="signOutUser">Sign out</button>
       </div>
       <div v-else>
-        <button :onClick="loginUser">Sign In</button>
+        <button :onClick="loginUser" class="btn-primary">Sign in</button>
       </div>
     </div>
   </div>
@@ -75,18 +63,20 @@ const route = useRoute();
 const routeParams = route.params;
 
 const authStore = useAuthStore();
-const { uid, email } = useAuthStore();
 
-const playerId = ref("123123123");
+const handleNavigateHome = () => {
+  if (routeParams.playerId) {
+    window.location = "/play/" + routeParams.playerId;
+  } else {
+    window.location = "/play";
+  }
+};
 
 const signOutUser = () => {
-  console.log("sign out user");
   authStore.signOut();
 };
 
 const loginUser = () => {
-  console.log("login user");
-
   if (!authStore.uid) {
     authStore.signOut();
   }
@@ -95,6 +85,5 @@ const loginUser = () => {
     email: "testofflineadmin1@roar-auth.com",
     password: "testofflineadminpw",
   });
-  console.log(authStore);
 };
 </script>

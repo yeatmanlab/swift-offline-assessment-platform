@@ -6,8 +6,28 @@
     padding: 3rem 5rem;
 }
 
+.btn-ghost {
+    background-color: transparent;
+    color: darkred;
+    border: 1px solid darkred;
+    border-radius: 0.3rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+}
+
+.btn-ghost:hover {
+    background-color: darkred;
+    color: white;
+}
+
 .btn-primary {
     background-color: darkred;
     color: white;
     border-radius: 0.3rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+}
+.btn-primary:hover {
+    background-color: transparent;
+    color: darkred;
 }

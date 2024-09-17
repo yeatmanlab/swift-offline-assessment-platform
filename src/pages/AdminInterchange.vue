@@ -46,6 +46,7 @@ const checkPassword = () => {
         window.location = "/play" 
         console.log("password correct")
     } else {
+        incorrectPassword.value = true
         console.log("password incorrect")
         
     }
