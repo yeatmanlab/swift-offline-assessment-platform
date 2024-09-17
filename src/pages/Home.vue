@@ -8,6 +8,9 @@
 
         Please choose from a
         list of functions below.
+
+        admin uid: 4shlrC4eJMZO3voP0QDyKKztLVo1
+
         </div>
       </div>
 

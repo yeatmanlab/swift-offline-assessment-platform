@@ -44,16 +44,16 @@ export class OfflineFirekit extends RoarFirekit {
     administrationId: string,
     taskId: string,
     taskVersion: string,
-    participant: UserInput,
+    participant: string,
   ) {
     // temporarily commented out 
     // this._verifyAuthentication();
-    const targetParticipantUserInfo:UserInfo = {
-      roarUid: "ctt3TIYA7kQN6BGs97fMTWg7ZAk2",
-      assessmentUid: "5ZU8afI7lVYV29P58EQe18UdmDC2",
-      assessmentPid: "OTG-c71fccea",
-      userType: UserType.student,
-  }
+  //   const targetParticipantUserInfo:UserInfo = {
+  //     roarUid: "ctt3TIYA7kQN6BGs97fMTWg7ZAk2",
+  //     assessmentUid: "5ZU8afI7lVYV29P58EQe18UdmDC2",
+  //     assessmentPid: "OTG-c71fccea",
+  //     userType: UserType.student,
+  // }
 
     const appKit = await runTransaction(this.admin!.db, async (transaction) => {
       // First grab data about the administration
@@ -142,8 +142,8 @@ export class OfflineFirekit extends RoarFirekit {
       //     // This would allow an admin user to launch another user into
           return new OfflineAppKit({
             firebaseProject: this.app,
-            userInfo: targetParticipantUserInfo,
-            parentUserInfo: this.roarAppUserInfo,
+            userInfo: this.roarAppUserInfo,
+            targetUser: participant,
             assigningOrgs,
             readOrgs,
             assignmentId: administrationId,

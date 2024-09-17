@@ -15,6 +15,10 @@
   import _get from 'lodash/get';
   import { fetchDocById } from '@/helpers/query/utils';
   import packageLockJson from '../../../package-lock.json';
+  import {useRoute} from 'vue-router';
+
+  const route = useRoute();
+  const { playerId } = route.params;
   
   const props = defineProps({
     taskId: { type: String, required: true, default: 'swr' },
@@ -104,7 +108,7 @@
 
       const tempSelectedAdmin = "nwhT3AkUNhTstIg48GUk"
   
-      const appKit = await authStore.roarfirekit.startAssessmentForTargetParticipant(tempSelectedAdmin, taskId, version);
+      const appKit = await authStore.roarfirekit.startAssessmentForTargetParticipant(tempSelectedAdmin, taskId, version, playerId);
       console.log('userdata', userData)
   
       const userDob = _get(userData, 'studentData.dob');

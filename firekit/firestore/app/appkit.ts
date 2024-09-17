@@ -34,7 +34,7 @@ export interface OfflineAppkitInput {
   firebaseConfig?: FirebaseConfig;
   taskInfo: TaskVariantInfo;
   userInfo?: UserInfo;
-  parentUserInfo: UserInfo;
+  targetUser: strin;
   assigningOrgs?: OrgLists;
   readOrgs?: OrgLists;
   assignmentId?: string;

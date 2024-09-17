@@ -7,8 +7,7 @@ import { initializeFirebaseProject } from "../util";
 import { getDownloadURL, ref } from "firebase/storage";
 
 export class OfflineAppKit extends RoarAppkit {
-  parentUserInfo: UserInfo;
-  parentUser: RoarAppUser;
+  targetUser: string;
   // TODO: find out what functions i need to override with this class
   /**
    * Create a RoarAppkit.
@@ -27,7 +26,7 @@ export class OfflineAppKit extends RoarAppkit {
     firebaseProject,
     firebaseConfig,
     userInfo,
-    parentUserInfo,
+    targetUser,
     taskInfo,
     assigningOrgs,
     readOrgs,
@@ -48,7 +47,7 @@ export class OfflineAppKit extends RoarAppkit {
       testData,
       demoData,
     });
-    this.parentUserInfo = parentUserInfo;
+    this.targetUser = targetUser;
   }
   
 
@@ -75,12 +74,6 @@ export class OfflineAppKit extends RoarAppkit {
       ...(this.testData.user && { testData: true }),
       ...(this.demoData.user && { demoData: true }),
     });
-    this.parentUser = new RoarAppUser({
-      ...this.parentUserInfo,
-      db: this.firebaseProject!.db,
-      ...(this.testData.user && { testData: true }),
-      ...(this.demoData.user && { demoData: true }),
-    })
     this.task = new RoarTaskVariant({
       // Define testData and demoData first so that spreading this._taskInfo can
       // overwrite them.
@@ -97,8 +90,8 @@ export class OfflineAppKit extends RoarAppkit {
     });
     this.run = new OfflineRun({
       user: this.user,
-      parentUser: this.parentUser,
       task: this.task,
+      targetUser: this.targetUser,
       assigningOrgs: this._assigningOrgs,
       readOrgs: this._readOrgs,
       assignmentId: this._assignmentId,

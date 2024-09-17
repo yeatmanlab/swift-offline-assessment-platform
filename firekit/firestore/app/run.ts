@@ -86,7 +86,7 @@ export interface RunInput {
 
 export interface OfflineRunInput {
   user: RoarAppUser;
-  parentUser: RoarAppUser;
+  targetUser: string;
   task: RoarTaskVariant;
   assigningOrgs?: OrgLists;
   readOrgs?: OrgLists;
