@@ -46,8 +46,7 @@ export class OfflineFirekit extends RoarFirekit {
     taskVersion: string,
     participant: string,
   ) {
-    // temporarily commented out 
-    // this._verifyAuthentication();
+    this._verifyAuthentication();
   //   const targetParticipantUserInfo:UserInfo = {
   //     roarUid: "ctt3TIYA7kQN6BGs97fMTWg7ZAk2",
   //     assessmentUid: "5ZU8afI7lVYV29P58EQe18UdmDC2",

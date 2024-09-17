@@ -49,14 +49,14 @@
         </div>
         <div class="text-xs uppercase font-light text-stone-400">username</div>
       </div>
-      <div class="flex flex-col items-end gap-1" v-else-if="authStore.email">
+      <div class="flex flex-col items-end gap-1" v-else-if="authStore.email && authStore.isAuthenticated">
         <div class="rounded bg-stone-100 px-2 py-1 text-stone-600">
           {{ authStore.email }}
         </div>
         <div class="text-xs uppercase font-light text-stone-400">email</div>
       </div>
       <div v-if="routeParams.playerId" class=""></div>
-      <div v-else-if="authStore.uid">
+      <div v-else-if="authStore.isAuthenticated">
         <button class="btn-primary" :onClick="signOutUser">Sign out</button>
       </div>
       <div v-else>

@@ -109,7 +109,6 @@
       const tempSelectedAdmin = "nwhT3AkUNhTstIg48GUk"
   
       const appKit = await authStore.roarfirekit.startAssessmentForTargetParticipant(tempSelectedAdmin, taskId, version, playerId);
-      console.log('userdata', userData)
   
       const userDob = _get(userData, 'studentData.dob');
       const userDateObj = new Date(userDob);
@@ -120,17 +119,13 @@
         birthYear: userDateObj.getFullYear(),
         language: props.language,
       };
-      console.log("made it past params")
   
       const gameParams = { ...appKit._taskInfo.variantParams };
-      console.log("made it past game params")
 
-      console.log("this is the taskaluncher", TaskLauncher)
   
       const roarApp = new TaskLauncher(appKit, gameParams, userParams, 'jspsych-target');
   
       await roarApp.run().then(async () => {
-        console.log("made it past run")
         // Handle any post-game actions.
         // await authStore.completeAssessment(tempSelectedAdmin, taskId);
   

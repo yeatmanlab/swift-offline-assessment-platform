@@ -84,7 +84,6 @@ router.beforeEach(async (to, from, next) => {
 
   const allowedUnauthenticatedRoutes = [
     'SignIn',
-    'Home',
     'Register',
   ];
   // Check if user is signed in. If not, go to signin

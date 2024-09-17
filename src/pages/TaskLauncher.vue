@@ -10,12 +10,12 @@
         <div class="flex flex-col gap-3">
           <div class="text-2xl font-bold">ROAR Apps</div>
           <div class="flex flex-col gap-3">
-            <button class="bg-red-900 text-white rounded px-2 py-3">
-              <a :href="'/play/' + playerId + '/task/swr'">ROAR - SWR</a>
-            </button>
-            <button class="bg-red-900 text-white rounded px-2 py-3">
-              <a :href="'/play/' + playerId + '/task/sre'">ROAR - SRE</a>
-            </button>
+            <a :href="'/play/' + playerId + '/task/swr'">
+              <button class="btn-primary">ROAR - SWR</button>
+            </a>
+            <a :href="'/play/' + playerId + '/task/sre'">
+              <button class="btn-primary">ROAR - SRE</button>
+            </a>
           </div>
         </div>
         <div
@@ -23,13 +23,17 @@
         >
           <div class="text-2xl font-bold">Levante Apps</div>
           <div class="flex flex-col gap-3">
-              <button class="bg-red-900 text-white rounded px-2 py-3">
-                <a href="/play/teak1023/task/swr">LEVANTE - Swr</a>
+            <a href="/play/teak1023/task/swr">
+              <button class="btn-primary">
+                LEVANTE - Swr
               </button>
-              <button class="bg-red-900 text-white rounded px-2 py-3">
-                <a href="/play/teak1023/task/sre">LEVANTE - SRE</a>
+            </a>
+            <a href="/play/teak1023/task/sre">
+              <button class="btn-primary">
+                LEVANTE - SRE
               </button>
-            </div>
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -41,5 +45,4 @@ import Navbar from "@/components/Navbar.vue";
 import { useRoute } from "vue-router";
 const route = useRoute();
 const { playerId } = route.params;
-
 </script>
