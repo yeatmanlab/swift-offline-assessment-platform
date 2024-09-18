@@ -1,12 +1,12 @@
 <template>
     <Navbar/>
     <div class="page-wrapper">
-        <div class="bg-stone-200 p-5 rounded">
+        <div class="bg-stone-100 p-5 rounded">
     <div class="font-bold text-xl"> Admin Interchange </div>
         <div class="">
-    <div class="font-light"> return to admin? enter your password </div>
+    <div class="font-light text-md"> Want to return to administrator mode? Please enter your password. </div>
     <div class="flex gap-3 my-5">
-    <input placeholder="password" class="px-3 rounded" v-model="passwordInput">  </input> 
+    <input placeholder="Password" class="px-3 rounded" v-model="passwordInput">  </input> 
     <button class="btn-primary" :onClick="checkPassword"> 
         Submit
         </button>

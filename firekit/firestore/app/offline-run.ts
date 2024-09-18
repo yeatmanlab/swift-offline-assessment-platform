@@ -55,7 +55,7 @@ export class OfflineRun extends RoarRun {
     this.targetUser = targetUser;
     console.log("target user is ", targetUser);
     this.runRef = doc(
-      collection(this.user.userRef, "offlineRuns", this.targetUser, "runs")
+      collection(this.user.userRef, "offlineUsers", this.targetUser, "runs")
     );
     // if(runId) {
     //   // write to the parent user's user collection, under a collection named 'userRuns'. under the user's runs collection

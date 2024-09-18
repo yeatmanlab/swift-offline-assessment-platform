@@ -3,6 +3,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { fileURLToPath, URL } from 'url';
 import mkcert from 'vite-plugin-mkcert';
+import { inject } from 'vue';
 
 
 // https://vitejs.dev/config/
@@ -20,11 +21,12 @@ export default defineConfig({
   plugins: [vue(),
     mkcert(),
      VitePWA({
-    strategies: 'injectManifest',
+      injectRegister: 'auto',
+    strategies: 'registerSW',
     srcDir: 'src',
     filename: 'sw.js',
     registerType: 'autoUpdate',
-    injectRegister: false,
+    // injectRegister: false,
 
     manifest: {
       name: 'roar-offline',

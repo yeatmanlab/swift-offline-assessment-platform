@@ -40,9 +40,16 @@ const routes = [
   {
     path: "/play/:playerId/task/sre",
     name: "SRE",
-    component: () => import("../components/tasks/taskSRE.vue"),
+    component: () => import("../components/tasks/TaskSRE.vue"),
     props: { taskId: "sre", language: "en" },
     meta: { pageTitle: "SRE" },
+  },
+  {
+    path: "/play/:playerId/task/levante",
+    name: "Levante",
+    component: () => import("../components/tasks/TaskLevante.vue"),
+    props: { language: "en"},
+    meta: { pageTitle: "Levante" },
   },
   {
     // we should strive to keep the adminstrator in this mode for as long as possible (persisting auth)

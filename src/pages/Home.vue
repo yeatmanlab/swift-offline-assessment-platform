@@ -5,11 +5,8 @@
       <div class="text-lg mb-3 font-bold">
         Welcome to the Swift Offline Assessment platform, or ⓈⓄⒶⓅ for short! 
         <div class="text-sm font-light">
-
         Please choose from a
         list of functions below.
-
-
         </div>
       </div>
 
