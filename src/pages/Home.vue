@@ -23,6 +23,7 @@
       </a>
       </div>
         admin uid: 4shlrC4eJMZO3voP0QDyKKztLVo1
+        administraiton id: nwhT3AkUNhTstIg48GUk
     </div>
   </div>
 </template>

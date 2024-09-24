@@ -31,8 +31,8 @@
         >
           <div class="text-lg font-bold">Levante Tasks</div>
           <div class="flex flex-col gap-3">
-            <a :href="'/play/' + playerId + '/task/levante'">
-              <button class="btn-ghost">LEVANTE Trog</button>
+            <a :href="'/play/' + playerId + '/task/levante/?task=vocab'">
+              <button class="btn-ghost">LEVANTE Vocab</button>
             </a>
             <a href="/play/teak1023/task/swr">
               <button class="btn-ghost">LEVANTE - Swr</button>
