@@ -19,7 +19,7 @@
   import { useRoute } from 'vue-router';
   
   const props = defineProps({
-    taskId: { type: String, default: 'egma-math' },
+    taskId: { type: String, default: 'core-tasks' },
   });
   const tempSelectedAdmin = "nwhT3AkUNhTstIg48GUk"
   
