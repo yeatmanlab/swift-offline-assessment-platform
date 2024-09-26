@@ -19,7 +19,7 @@
   import { useRoute } from 'vue-router';
   
   const props = defineProps({
-    taskId: { type: String, default: 'core-tasks' },
+    taskId: { type: String, default: 'vocab' },
   });
   const tempSelectedAdmin = "nwhT3AkUNhTstIg48GUk"
   
