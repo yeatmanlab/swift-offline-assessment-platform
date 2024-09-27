@@ -45,9 +45,16 @@ const routes = [
     meta: { pageTitle: "SRE" },
   },
   {
+    path: "/play/:playerId/task/vocab",
+    name: "vocab",
+    component: () => import("../components/tasks/TaskVocab.vue"),
+    props: { taskId: "vocab", language: "en" },
+    meta: { pageTitle: "VOCAB" },
+  },
+  {
     path: "/play/:playerId/task/levante",
     name: "Levante",
-    component: () => import("../components/tasks/TaskLevante.vue"),
+    component: () => import("../components/tasks/levante/TaskLevante.vue"),
     props: { language: "en"},
     meta: { pageTitle: "Levante" },
   },

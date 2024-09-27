@@ -4,6 +4,7 @@ import { clientsClaim } from 'workbox-core'
 import { NavigationRoute, registerRoute } from 'workbox-routing'
 
 // self.__WB_MANIFEST is the default injection point
+const precacheList = self.__WB_MANIFEST != null ? self.__WB_MANIFEST : []
 precacheAndRoute(self.__WB_MANIFEST)
 
 // clean old assets

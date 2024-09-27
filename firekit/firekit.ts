@@ -1604,6 +1604,7 @@ export class RoarFirekit {
               variant: isVariantDemo ?? false,
             },
           };
+          console.log("taskinfo")
 
 
           // TODO: use target participant user info instead of the default 

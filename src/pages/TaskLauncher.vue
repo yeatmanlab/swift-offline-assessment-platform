@@ -24,6 +24,9 @@
             <a :href="'/play/' + playerId + '/task/sre'">
               <button class="btn-ghost">ROAR - SRE</button>
             </a>
+            <a :href="'/play/' + playerId + '/task/vocab'">
+              <button class="btn-ghost">ROAR - VOCAB</button>
+            </a>
           </div>
         </div>
         <div

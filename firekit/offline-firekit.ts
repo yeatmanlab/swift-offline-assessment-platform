@@ -4,23 +4,7 @@ import { doc, runTransaction } from 'firebase/firestore';
 import { Assessment, AssignedAssessment, UserType } from './interfaces';
 import { UserInfo, UserInput } from './firestore/app/user';
 import { OfflineAppKit } from './firestore/app/offline-appkit';
-
-// TODO: See if I can create a variant of the ROAR firekit class where trials are written
-// to the admin user's object instead of the target user's trials
-// this schema might look something like this
-// offline_admin_user : {
-//  offline_run_data: {
-//    user1: {
-//      trials...
-//    },
-//    user2: {
-//      trials...
-//    },
-//    user3: {
-//      trials...
-//    },
-//  }
-// }
+import { taskParameters } from '../src/components/tasks/parameters'
 
 export class OfflineFirekit extends RoarFirekit {
   // takes in a username (or null) and returns a ROARAppUseusername (or null). If null, returns auto generated user
@@ -92,18 +76,32 @@ export class OfflineFirekit extends RoarFirekit {
 
           const assigningOrgs = assignmentDocSnap.data().assigningOrgs;
           const readOrgs = assignmentDocSnap.data().readOrgs;
-          const taskAndVariant = await getTaskAndVariant({
+          console.log("levantetaskid", taskId)
+          // TODO: Pull task and variant info from parameters
+
+          const taskAndVariantFromBackend = await getTaskAndVariant({
             db: this.app!.db,
             taskId,
             variantParams: assessmentParams,
           });
+          // if (taskAndVariant.task === undefined) {
+          //   throw new Error(`Could not find task ${taskId}`);
+          // }
+
+          // if (taskAndVariant.variant === undefined) {
+          //   throw new Error(
+          //     `Could not find a variant of task ${taskId} with the params: ${JSON.stringify(assessmentParams)}`,
+          //   );
+          // }
+          const taskAndVariant = taskParameters[taskId]
+          console.log("taskaAndvariant", taskAndVariant, taskAndVariantFromBackend)
           if (taskAndVariant.task === undefined) {
             throw new Error(`Could not find task ${taskId}`);
           }
 
           if (taskAndVariant.variant === undefined) {
             throw new Error(
-              `Could not find a variant of task ${taskId} with the params: ${JSON.stringify(assessmentParams)}`,
+              `Variant of task ${taskId} not found}`,
             );
           }
 
@@ -136,7 +134,7 @@ export class OfflineFirekit extends RoarFirekit {
             },
           };
 
-          console.log('this is what the user info is set as', this.roarAppUserInfo)
+          console.log('various offlinefirekit params: assigningorgs, read orgs, taskinfo', assigningOrgs, readOrgs, taskInfo)
           // TODO: use target participant user info instead of the default
       //     // This would allow an admin user to launch another user into
           return new OfflineAppKit({

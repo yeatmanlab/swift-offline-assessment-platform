@@ -15,7 +15,7 @@
   import { useGameStore } from '@/store/game';
   import _get from 'lodash/get';
   import { fetchDocById } from '@/helpers/query/utils';
-  import packageLockJson from '../../../package-lock.json';
+  import packageLockJson from '../../../../package-lock.json';
   import { useRoute } from 'vue-router';
   
   const props = defineProps({
