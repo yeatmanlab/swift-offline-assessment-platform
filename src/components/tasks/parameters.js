@@ -110,6 +110,17 @@ export const taskParameters = {
         "https://storage.googleapis.com/road-dashboard/shared/vocab-logo.png",
       name: "Vocabulary",
     },
+    // this is the 'variantParams' coming back from appkit.
+    // {
+    //     "maxTime": 5,
+    //     "skipInstructions": true,
+    //     "userMode": "4AFC",
+    //     "recruitment": "school",
+    //     "numTrialsTotal": 48,
+    //     "consent": true,
+    //     "audioFeedback": "binary",
+    //     "story": true
+    // }
     variant: {
       description: "a variant of vocab",
       age: null,
@@ -129,4 +140,30 @@ export const taskParameters = {
       taskName: "vocab",
     },
   },
+  'egma-math': {
+    task: {
+        description: "Solve the math problems",
+        name: "Math Game",
+        image: "https://storage.googleapis.com/road-dashboard/shared/math-logo.png",
+        studentFacingName: "Math Game",
+
+    },
+    variant: {
+        age: null,
+        buttonLayout: "default",
+        corpus: "math-item-bank",
+        keyHelpers: false,
+        language: 'en',
+        maxIncorrect: 3,
+        maxTime: 100,
+        numOfPracticeTrials: 2,
+        numOfTrials: 300,
+        sequentialPractice: true,
+        sequentialStimulus: true,
+        skipInstructions: true,
+        stimulusBlocks: 3,
+        stormItemId: false,
+        taskName: 'egma-math'
+    }
+  }
 };

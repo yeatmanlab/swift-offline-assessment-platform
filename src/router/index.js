@@ -52,7 +52,7 @@ const routes = [
     meta: { pageTitle: "VOCAB" },
   },
   {
-    path: "/play/:playerId/task/levante",
+    path: "/play/:playerId/task/levante/:taskId",
     name: "Levante",
     component: () => import("../components/tasks/levante/TaskLevante.vue"),
     props: { language: "en"},

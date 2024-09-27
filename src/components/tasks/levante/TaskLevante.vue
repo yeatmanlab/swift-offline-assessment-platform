@@ -17,15 +17,18 @@
   import { fetchDocById } from '@/helpers/query/utils';
   import packageLockJson from '../../../../package-lock.json';
   import { useRoute } from 'vue-router';
+  import {taskParameters } from '@/components/tasks/parameters'
   
-  const props = defineProps({
-    taskId: { type: String, default: 'vocab' },
-  });
+  // const props = defineProps({
+  //   taskId: { type: String, default: 'vocab' },
+  // });
+  const route = useRoute();
+  const { playerId, taskId } = route.params;
   const tempSelectedAdmin = "nwhT3AkUNhTstIg48GUk"
   
   let levanteTaskLauncher;
   
-  const taskId = props.taskId;
+  // const taskId = props.taskId;
   const { version } = packageLockJson.packages['node_modules/@levante-framework/core-tasks'];
   const router = useRouter();
   const gameStarted = ref(false);
@@ -89,8 +92,6 @@
   });
   
   const { selectedAdmin } = storeToRefs(gameStore);
-  const route = useRoute();
-  const { playerId } = route.params;
   
   async function startTask() {
     console.log("participant", playerId)
@@ -114,8 +115,11 @@
         birthMonth: userDateObj.getMonth() + 1,
         birthYear: userDateObj.getFullYear(),
       };
-  
+      console.log("appkit", appKit)
       const gameParams = { ...appKit._taskInfo.variantParams };
+      // const gameParams = taskParameters[taskId].variant.params
+      // const gameParams  
+      console.log("gameparams from inside tasklevante", gameParams) 
   
       const levanteTask = new levanteTaskLauncher(appKit, gameParams, userParams, 'jspsych-target');
   
