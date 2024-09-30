@@ -8,7 +8,7 @@ import {
   inMemoryPersistence,
   setPersistence,
 } from 'firebase/auth';
-import { connectFirestoreEmulator, Firestore, getFirestore } from 'firebase/firestore';
+import { connectFirestoreEmulator, Firestore, getFirestore, initializeFirestore, persistentLocalCache, persistentMultipleTabManager } from 'firebase/firestore';
 import { Functions, connectFunctionsEmulator, getFunctions } from 'firebase/functions';
 import { getStorage, FirebaseStorage } from 'firebase/storage';
 import { getPerformance, FirebasePerformance } from 'firebase/performance';
@@ -174,7 +174,9 @@ export const initializeFirebaseProject = async (
     const kit = {
       firebaseApp: app,
       auth: optionallyMarkRaw('auth', getAuth(app)),
-      db: optionallyMarkRaw('db', getFirestore(app)),
+      db: optionallyMarkRaw('db', initializeFirestore(app, {localCache: 
+        persistentLocalCache(/*settings*/{tabManager: persistentMultipleTabManager()})
+      })),
       functions: optionallyMarkRaw('functions', getFunctions(app)),
       storage: optionallyMarkRaw('storage', getStorage(app)),
       perf: performance,

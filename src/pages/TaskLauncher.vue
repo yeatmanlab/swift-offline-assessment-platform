@@ -34,15 +34,15 @@
         >
           <div class="text-lg font-bold">Levante Tasks</div>
           <div class="flex flex-col gap-3">
-            <a :href="'/play/' + playerId + '/task/levante/?task=vocab'">
+            <a :href="'/play/' + playerId + '/task/levante/vocab'">
               <button class="btn-ghost">LEVANTE Vocab</button>
             </a>
-            <a href="/play/teak1023/task/swr">
-              <button class="btn-ghost">LEVANTE - Swr</button>
+            <a :href="'/play/' + playerId + '/task/levante/egma-math'">
+              <button class="btn-ghost">LEVANTE - Math Game</button>
             </a>
-            <a href="/play/teak1023/task/sre">
+            <!-- <a href="/play/teak1023/task/sre">
               <button class="btn-ghost">LEVANTE - SRE</button>
-            </a>
+            </a> -->
           </div>
         </div>
       </div>

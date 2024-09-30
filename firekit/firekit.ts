@@ -178,18 +178,18 @@ export class RoarFirekit {
   roarConfig: RoarConfig;
   userData?: UserDataInAdminDb;
   listenerUpdateCallback: (...args: unknown[]) => void;
-  private _idTokenReceived?: boolean;
-  private _idTokens: { admin?: string; app?: string };
-  private _adminOrgs?: Record<string, string[]>;
-  private _authPersistence: AuthPersistence;
-  private _initialized: boolean;
-  private _markRawConfig: MarkRawConfig;
-  private _superAdmin?: boolean;
-  private _admin?: boolean;
-  private _verboseLogging?: boolean;
-  private _adminTokenListener?: Unsubscribe;
-  private _appTokenListener?: Unsubscribe;
-  private _adminClaimsListener?: Unsubscribe;
+  protected _idTokenReceived?: boolean;
+  protected _idTokens: { admin?: string; app?: string };
+  protected _adminOrgs?: Record<string, string[]>;
+  protected _authPersistence: AuthPersistence;
+  protected _initialized: boolean;
+  protected _markRawConfig: MarkRawConfig;
+  protected _superAdmin?: boolean;
+  protected _admin?: boolean;
+  protected _verboseLogging?: boolean;
+  protected _adminTokenListener?: Unsubscribe;
+  protected _appTokenListener?: Unsubscribe;
+  protected _adminClaimsListener?: Unsubscribe;
   /**
    * Create a RoarFirekit. This expects an object with keys `roarConfig`,
    * where `roarConfig` is a [[RoarConfig]] object.
@@ -213,6 +213,7 @@ export class RoarFirekit {
     this.roarConfig = roarConfig;
     this._verboseLogging = verboseLogging;
     this._authPersistence = authPersistence;
+    console.log("auth persistence for firekit", authPersistence)
     this._markRawConfig = markRawConfig;
     this._initialized = false;
     this._idTokens = {};
@@ -220,7 +221,7 @@ export class RoarFirekit {
     this.listenerUpdateCallback = listenerUpdateCallback ?? (() => {});
   }
 
-  private _getProviderIds() {
+  protected _getProviderIds() {
     return {
       ...ProviderId,
       CLEVER: 'oidc.clever',
@@ -229,7 +230,7 @@ export class RoarFirekit {
     };
   }
 
-  private _scrubAuthProperties() {
+  protected _scrubAuthProperties() {
     this.userData = undefined;
     this.roarAppUserInfo = undefined;
     this._adminOrgs = undefined;
@@ -308,7 +309,7 @@ export class RoarFirekit {
     return this;
   }
 
-  private verboseLog(...logStatement: unknown[]) {
+  protected verboseLog(...logStatement: unknown[]) {
     if (this._verboseLogging) {
       console.log('[RoarFirekit] ', ...logStatement);
     } else return;
@@ -326,7 +327,7 @@ export class RoarFirekit {
    *
    * @throws {Error} - If the RoarFirekit instance has not been initialized.
    */
-  private _verifyInit() {
+  protected _verifyInit() {
     if (!this._initialized) {
       throw new Error('RoarFirekit has not been initialized. Use the `init` method.');
     }
@@ -345,7 +346,7 @@ export class RoarFirekit {
    * @returns {boolean} - A boolean value indicating whether the user is authenticated or not.
    * @throws {Error} - If the Firebase projects are not initialized.
    */
-  private _isAuthenticated() {
+  protected _isAuthenticated() {
     this._verifyInit();
     return !(this.admin!.user === undefined || this.app!.user === undefined);
   }
@@ -393,7 +394,7 @@ export class RoarFirekit {
    *
    * @throws {Error} - Throws an error if the user is not authenticated.
    */
-  private _verifyAdmin() {
+  protected _verifyAdmin() {
     this._verifyAuthentication();
     if (!this.isAdmin()) {
       throw new Error('User is not an administrator.');
@@ -412,7 +413,7 @@ export class RoarFirekit {
    * @returns {FirebaseFirestore.Unsubscribe} - The unsubscribe function to stop listening for changes in the user's custom claims.
    * @throws {FirebaseError} - If there is an error setting up the snapshot listener.
    */
-  private _listenToClaims(firekit: FirebaseProject) {
+  protected _listenToClaims(firekit: FirebaseProject) {
     this.verboseLog('entry point to listenToClaims');
     this._verifyInit();
     if (firekit.user) {
@@ -497,9 +498,9 @@ export class RoarFirekit {
    * @param {FirebaseProject} firekit - The Firebase project to listen for token changes.
    * @param {'admin' | 'app'} _type - The type of Firebase project ('admin' or 'app').
    * @returns {firebase.Unsubscribe} - A function to unsubscribe from the listener.
-   * @private
+   * @protected
    */
-  private _listenToTokenChange(firekit: FirebaseProject, _type: 'admin' | 'app') {
+  protected _listenToTokenChange(firekit: FirebaseProject, _type: 'admin' | 'app') {
     this.verboseLog('Entry point for listenToTokenChange, called with', _type);
     this._verifyInit();
     this.verboseLog('Checking for existance of tokenListener with type', _type);
@@ -539,7 +540,7 @@ export class RoarFirekit {
    * @returns {Promise<any>} - A promise that resolves with the result of the setUidClaims cloud function execution.
    * @throws {Error} - If the setUidClaims cloud function execution fails, an Error is thrown.
    */
-  private async _setUidCustomClaims() {
+  protected async _setUidCustomClaims() {
     this.verboseLog('Entry point to setUidCustomClaims');
     this._verifyAuthentication();
 
@@ -574,7 +575,7 @@ export class RoarFirekit {
    * @throws {Error} - If the required parameters are missing or invalid.
    * @returns {Promise<void>} - A promise that resolves when the synchronization is complete.
    */
-  private async _syncEduSSOUser(oAuthAccessToken?: string, authProvider?: AuthProviderType) {
+  protected async _syncEduSSOUser(oAuthAccessToken?: string, authProvider?: AuthProviderType) {
     this.verboseLog('Entry point for syncEduSSOUser');
     if (authProvider === AuthProviderType.CLEVER) {
       if (oAuthAccessToken === undefined) {
@@ -1245,7 +1246,7 @@ export class RoarFirekit {
    *
    * @returns {Promise<void>} - A promise that resolves when the user is successfully signed out.
    */
-  private async _signOutApp() {
+  protected async _signOutApp() {
     this._scrubAuthProperties();
     await signOut(this.app!.auth);
   }
@@ -1257,7 +1258,7 @@ export class RoarFirekit {
    *
    * @returns {Promise<void>} - A promise that resolves when the user is successfully signed out.
    */
-  private async _signOutAdmin() {
+  protected async _signOutAdmin() {
     if (this._adminClaimsListener) this._adminClaimsListener();
     if (this._adminTokenListener) this._adminTokenListener();
     this._scrubAuthProperties();
@@ -1346,7 +1347,7 @@ export class RoarFirekit {
     return taskMap;
   }
 
-  private async _getUser(uid: string): Promise<UserDataInAdminDb | undefined> {
+  protected async _getUser(uid: string): Promise<UserDataInAdminDb | undefined> {
     this._verifyAuthentication();
     const userDocRef = doc(this.admin!.db, 'users', uid);
     const userDocSnap = await getDoc(userDocRef);
