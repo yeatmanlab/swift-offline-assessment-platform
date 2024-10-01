@@ -1,39 +1,51 @@
 /// <reference lib="webworker" />
-import { cleanupOutdatedCaches, createHandlerBoundToURL, precacheAndRoute, PrecacheController } from 'workbox-precaching'
-import { clientsClaim, cacheNames } from 'workbox-core'
-import { NavigationRoute, registerRoute } from 'workbox-routing'
-import {CacheFirst, NetworkFirst} from 'workbox-strategies';
+import {
+  cleanupOutdatedCaches,
+  createHandlerBoundToURL,
+  precacheAndRoute,
+  PrecacheController,
+} from "workbox-precaching";
+import { clientsClaim, cacheNames } from "workbox-core";
+import { NavigationRoute, registerRoute } from "workbox-routing";
+import { CacheFirst, NetworkFirst } from "workbox-strategies";
+import { taskAssetsList, taskAssets } from "./taskAssetsList.js";
 // add pages to app assets
 
 // self.__WB_MANIFEST is the default injection point
 // add various pages and components to cachelisa
-precacheAndRoute(self.__WB_MANIFEST)
+precacheAndRoute(self.__WB_MANIFEST);
 
-console.log("swself", self)
-self.addEventListener('install', (event) => {
-  console.log("swinstall", event)
-  self.skipWaiting()
-})
+const precacheController = new PrecacheController();
 
-// self.addEventListener('fetch'), (event) => {
-//   console.log("swfetch", event)
-// }
+// add levante task assets
+console.log("taskAssetsList", taskAssets);
+
+precacheController.addToCacheList(taskAssetsList);
+console.log("precachecontroller", precacheController);
+
+console.log("swself", self);
+self.addEventListener("install", (event) => {
+  console.log("swinstall", event);
+  self.skipWaiting();
+});
+
+self.addEventListener('fetch', (event) => {
+  const cacheKey = precacheController.getCacheKeyForURL(event.request.url);
+  event.respondWith(caches.match(cacheKey).then(...));
+});
+
 
 // clean old assets
-cleanupOutdatedCaches()
+cleanupOutdatedCaches();
 
 /** @type {RegExp[] | undefined} */
-let allowlist
+let allowlist;
 // in dev mode, we disable precaching to avoid caching issues
-if (import.meta.env.DEV)
-  allowlist = [/^\/$/]
+if (import.meta.env.DEV) allowlist = [/^\/$/];
 
-
-registerRoute(new NavigationRoute(
-  createHandlerBoundToURL('index.html'),
-  { allowlist },
-))
-
+registerRoute(
+  new NavigationRoute(createHandlerBoundToURL("index.html"), { allowlist })
+);
 
 // registerRoute(({url}) => url.pathname.startsWith('/play/'), new NetworkFirst());
 
@@ -53,7 +65,5 @@ registerRoute(new NavigationRoute(
 //   })
 // );
 
-
-
-self.skipWaiting()
-clientsClaim()
+self.skipWaiting();
+clientsClaim();

@@ -1,53 +1,6 @@
 export const taskParameters = {
   // params for route core-tasks/vocab
   // This is what's coming back from `getTask`
-  //   {
-  //     "task": {
-  //         "name": "ROAR - Picture Vocabulary",
-  //         "image": "https://raw.githubusercontent.com/yeatmanlab/roar-assets/main/roar-apps/picture-vocab-no-lion.png",
-  //         "studentFacingName": "Picture Vocab",
-  //         "id": "vocab",
-  //         "description": "Listen to words and find the matching picture",
-  //         "gameConfig": {
-  //             "recruitment": "pilot",
-  //             "audioFeedback": "binary",
-  //             "randomCatchIndex": 103,
-  //             "skipInstructions": true,
-  //             "nRandom": 5,
-  //             "story": false,
-  //             "totalTrialsPractice": 5,
-  //             "stimulusCountList": "103",
-  //             "userMode": "4AFC",
-  //             "numTrialsTotal": 103,
-  //             "consent": true
-  //         },
-  //         "publicName": "ROAR - Picture Vocab",
-  //         "lastUpdated": {
-  //             "seconds": 1727465761,
-  //             "nanoseconds": 506000000
-  //         },
-  //         "registered": true,
-  //         "technicalName": "Picture Vocabulary"
-  //     },
-  //     "variant": {
-  //         "lastUpdated": {
-  //             "seconds": 1727289506,
-  //             "nanoseconds": 40000000
-  //         },
-  //         "name": "vocab-school-4AFC-5minTimer",
-  //         "params": {
-  //             "audioFeedback": "binary",
-  //             "userMode": "4AFC",
-  //             "skipInstructions": true,
-  //             "maxTime": 5,
-  //             "consent": true,
-  //             "numTrialsTotal": 48,
-  //             "story": true,
-  //             "recruitment": "school"
-  //         },
-  //         "id": "OsF6wag4pQiEqNHdvM5u"
-  //     }
-  // }
   swr: {
     task: {
       publicName: "ROAR - Word",
@@ -110,17 +63,6 @@ export const taskParameters = {
         "https://storage.googleapis.com/road-dashboard/shared/vocab-logo.png",
       name: "Vocabulary",
     },
-    // this is the 'variantParams' coming back from appkit.
-    // {
-    //     "maxTime": 5,
-    //     "skipInstructions": true,
-    //     "userMode": "4AFC",
-    //     "recruitment": "school",
-    //     "numTrialsTotal": 48,
-    //     "consent": true,
-    //     "audioFeedback": "binary",
-    //     "story": true
-    // }
     variant: {
       description: "a variant of vocab",
       age: null,
@@ -140,30 +82,55 @@ export const taskParameters = {
       taskName: "vocab",
     },
   },
-  'egma-math': {
+  "egma-math": {
     task: {
-        description: "Solve the math problems",
-        name: "Math Game",
-        image: "https://storage.googleapis.com/road-dashboard/shared/math-logo.png",
-        studentFacingName: "Math Game",
-
+      description: "Solve the math problems",
+      name: "Math Game",
+      image:
+        "https://storage.googleapis.com/road-dashboard/shared/math-logo.png",
+      studentFacingName: "Math Game",
     },
     variant: {
-        age: null,
-        buttonLayout: "default",
-        corpus: "math-item-bank",
-        keyHelpers: false,
-        language: 'en',
-        maxIncorrect: 3,
-        maxTime: 100,
-        numOfPracticeTrials: 2,
-        numOfTrials: 300,
-        sequentialPractice: true,
-        sequentialStimulus: true,
-        skipInstructions: true,
-        stimulusBlocks: 3,
-        stormItemId: false,
-        taskName: 'egma-math'
+      age: null,
+      buttonLayout: "default",
+      corpus: "math-item-bank",
+      keyHelpers: false,
+      language: "en",
+      maxIncorrect: 3,
+      maxTime: 100,
+      numOfPracticeTrials: 2,
+      numOfTrials: 300,
+      sequentialPractice: true,
+      sequentialStimulus: true,
+      skipInstructions: true,
+      stimulusBlocks: 3,
+      stormItemId: false,
+      taskName: "egma-math",
+    },
+  },
+  intro: {
+    task: {
+      description: "Learn how to play the games",
+      image:
+        "https://storage.googleapis.com/road-dashboard/shared/intro-logo.png",
+      name: "Instructions",
+    },
+    variant: {
+      age: null,
+      buttonLayout: "default",
+      corpus: "null",
+      keyHelpers: false,
+      language: "en",
+      maxIncorrect: 3,
+      maxTime: 100,
+      numOfPracticeTrials: 2,
+      numberOfTrials: 300,
+      sequentialPractice: true,
+      sequentialStimulus: true,
+      skipInstructions: true,
+      stimulusBlocks: 3,
+      stormItemId: false,
+      description: "a variant of intro",
     }
-  }
+  },
 };

@@ -34,6 +34,9 @@
         >
           <div class="text-lg font-bold">Levante Tasks</div>
           <div class="flex flex-col gap-3">
+            <a :href="'/play/' + playerId + '/task/levante/intro'">
+              <button class="btn-ghost">LEVANTE Intro</button>
+            </a>
             <a :href="'/play/' + playerId + '/task/levante/vocab'">
               <button class="btn-ghost">LEVANTE Vocab</button>
             </a>
@@ -66,4 +69,22 @@ import Navbar from "@/components/Navbar.vue";
 import { useRoute } from "vue-router";
 const route = useRoute();
 const { playerId } = route.params;
+
+
+// list of levante apps
+// EF tasks
+// Hearts and Flowers
+// Same-Different-Selection
+// Memory Game
+// Matrix reasoning
+// Mental rotation
+// Language tasks:
+// TROG
+// Vocab
+// Phoneme
+// Sentence
+// Word/nonword
+// Math
+// Kid survey
+// Theory of Mind + ER + HA task
 </script>

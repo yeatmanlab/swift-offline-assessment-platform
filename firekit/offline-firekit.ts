@@ -157,6 +157,7 @@ export class OfflineFirekit extends RoarFirekit {
             },
           };
 
+            /// todo: figure out which params can be obviated for the offline flavor
           console.log(
             "various offlinefirekit params: assigningorgs, read orgs, taskinfo",
             assigningOrgs,

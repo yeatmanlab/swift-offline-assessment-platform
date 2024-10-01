@@ -44,6 +44,7 @@ export class TaskLauncher {
       } else {
         mediaAssets = await getMediaAssets(taskName, {}, language);
       }
+      console.log("media assets", mediaAssets)
     } catch (error) {
       throw new Error('Error fetching media assets: ' + error);
     }
