@@ -59,13 +59,13 @@ export default defineConfig({
 
       injectManifest: {
         globPatterns: [
-          "src/assets/**/*.{js,css,html,svg,png,ico,vue}",
-          "src/pages/**/*.{js,css,html,svg,png,ico,vue}",
-          "src/components/**/*.{js,css,html,svg,png,ico,vue}",
-          "src/store/**/*.{js,css,html,svg,png,ico,vue}",
-          "src/router/**/*.{js,css,html,svg,png,ico,vue}",
-          "src/core-tasks/task-launcher/src/**/*.{js,css,html,svg,png,ico,vue}",
-          // "**/*.{js,css,html,svg,png,ico,vue}"],
+          // "src/assets/**/*.{js,css,html,svg,png,ico,vue}",
+          // "src/pages/**/*.{js,css,html,svg,png,ico,vue}",
+          // "src/components/**/*.{js,css,html,svg,png,ico,vue}",
+          // "src/store/**/*.{js,css,html,svg,png,ico,vue}",
+          // "src/router/**/*.{js,css,html,svg,png,ico,vue}",
+          // "src/core-tasks/task-launcher/src/**/*.{js,css,html,svg,png,ico,vue}",
+          "**/*.{js,css,html,svg,png,ico,vue}",
         ]
       },
 

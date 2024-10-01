@@ -7,7 +7,6 @@ import {CacheFirst, NetworkFirst} from 'workbox-strategies';
 
 // self.__WB_MANIFEST is the default injection point
 // add various pages and components to cachelisa
-console.log("self", self.__WB_MANIFEST) 
 precacheAndRoute(self.__WB_MANIFEST)
 
 console.log("swself", self)
@@ -15,6 +14,10 @@ self.addEventListener('install', (event) => {
   console.log("swinstall", event)
   self.skipWaiting()
 })
+
+// self.addEventListener('fetch'), (event) => {
+//   console.log("swfetch", event)
+// }
 
 // clean old assets
 cleanupOutdatedCaches()
@@ -30,6 +33,7 @@ registerRoute(new NavigationRoute(
   createHandlerBoundToURL('index.html'),
   { allowlist },
 ))
+
 
 // registerRoute(({url}) => url.pathname.startsWith('/play/'), new NetworkFirst());
 
