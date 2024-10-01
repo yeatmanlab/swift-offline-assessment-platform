@@ -38,6 +38,7 @@ export async function getMediaAssets(
   const device = getDevice();
 
   const baseUrl = `https://storage.googleapis.com/storage/v1/b/${bucketName}/o`;
+  console.log("baseurlase",baseUrl )
   let url = baseUrl;
   if (nextPageToken) {
     url += `?pageToken=${nextPageToken}`;

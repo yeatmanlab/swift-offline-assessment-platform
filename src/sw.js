@@ -6,10 +6,11 @@ import {
   PrecacheController,
 } from "workbox-precaching";
 import { clientsClaim, cacheNames } from "workbox-core";
-import { NavigationRoute, registerRoute } from "workbox-routing";
-import { CacheFirst, NetworkFirst } from "workbox-strategies";
-import { taskAssetsList, taskAssets } from "./taskAssetsList.js";
-// add pages to app assets
+import { NavigationRoute, registerRoute } from "workbox-routing"a
+
+self.skipWaiting();
+self.clientsClaim();
+
 
 // self.__WB_MANIFEST is the default injection point
 // add various pages and components to cachelisa
@@ -47,7 +48,21 @@ registerRoute(
   new NavigationRoute(createHandlerBoundToURL("index.html"), { allowlist })
 );
 
-// registerRoute(({url}) => url.pathname.startsWith('/play/'), new NetworkFirst());
+registerRoute(
+  ({ url }) => url.origin === "https://storage.googleapis.com/",
+  new CacheFirst({
+    cacheName: "bucketAssets",
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [0, 200],
+      }),
+      new ExpirationPlugin({
+        maxEntries: 100,
+        maxAgeSeconds: 365 * 24 * 60 * 60, // keep cache for a year
+      }),
+    ]
+  })
+);  
 
 // registerRoute(
 //   ({ request }) => request.destination === "image",
@@ -58,12 +73,10 @@ registerRoute(
 //         statuses: [0, 200],
 //       }),
 //       new ExpirationPlugin({
-//         maxEntries: 60,
-//         maxAgeSeconds: 7 * 24 * 60 * 60, // cache the images for only 7 Days
+//         maxEntries: 100,
+//         maxAgeSeconds: 7 * 24 * 60 * 60,  // keep cache for a year
 //       }),
 //     ],
 //   })
 // );
 
-self.skipWaiting();
-clientsClaim();
