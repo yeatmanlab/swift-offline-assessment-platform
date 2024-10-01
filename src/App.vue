@@ -1,9 +1,15 @@
+<template>
+  <router-view />
+    <ReloadPrompt />
+</template>
+
 <script setup>
 import {ref, onBeforeMount} from 'vue';
 import { useRoute } from 'vue-router';
 import { useAuthStore } from '@/store/auth';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { fetchDocById } from '@/helpers/query/utils';
+import ReloadPrompt from '@/components/ReloadPrompt.vue';
 
 const isAuthStoreReady = ref(false);
 
@@ -34,9 +40,6 @@ onBeforeMount(async () => {
 });
 </script>
 
-<template>
-  <router-view />
-</template>
 
 <style scoped>
 .logo {

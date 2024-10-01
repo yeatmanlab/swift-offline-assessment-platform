@@ -1,11 +1,17 @@
 /// <reference lib="webworker" />
 import { cleanupOutdatedCaches, createHandlerBoundToURL, precacheAndRoute } from 'workbox-precaching'
-import { clientsClaim } from 'workbox-core'
+import { clientsClaim, cacheNames } from 'workbox-core'
 import { NavigationRoute, registerRoute } from 'workbox-routing'
 
 // self.__WB_MANIFEST is the default injection point
 const precacheList = self.__WB_MANIFEST != null ? self.__WB_MANIFEST : []
 precacheAndRoute(self.__WB_MANIFEST)
+
+console.log("swself", self)
+self.addEventListener('install', (event) => {
+  console.log("swinstall", event)
+  self.skipWaiting()
+})
 
 // clean old assets
 cleanupOutdatedCaches()
@@ -16,7 +22,7 @@ let allowlist
 if (import.meta.env.DEV)
   allowlist = [/^\/$/]
 
-// to allow work offline
+// to allow to work offline
 registerRoute(new NavigationRoute(
   createHandlerBoundToURL('index.html'),
   { allowlist },
