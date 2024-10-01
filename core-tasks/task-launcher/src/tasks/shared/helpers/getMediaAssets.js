@@ -27,6 +27,7 @@ const wlist = {
   },
 };
 
+// TODO: modify this funciton to instead pull assets from locally stored assets
 export async function getMediaAssets(
   bucketName,
   whitelist = {},
