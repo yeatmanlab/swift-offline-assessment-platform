@@ -15,10 +15,10 @@ import { useAuthStore } from "@/store/auth";
 import { useGameStore } from "@/store/game";
 import _get from "lodash/get";
 import { fetchDocById } from "@/helpers/query/utils";
-import packageLockJson from "../../../../package-lock.json";
+import packageLockJson from "../../../package-lock.json";
 import { useRoute } from "vue-router";
 import { taskParameters } from "@/components/tasks/parameters";
-import { TaskLauncher } from "../../../../core-tasks/task-launcher/src/index.ts";
+import { TaskLauncher } from "../../../core-tasks/task-launcher/src/index.ts";
 
 const route = useRoute();
 const { playerId, taskId } = route.params;

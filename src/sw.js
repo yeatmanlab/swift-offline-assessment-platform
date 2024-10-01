@@ -29,10 +29,10 @@ self.addEventListener("install", (event) => {
   self.skipWaiting();
 });
 
-self.addEventListener('fetch', (event) => {
-  const cacheKey = precacheController.getCacheKeyForURL(event.request.url);
-  event.respondWith(caches.match(cacheKey).then(...));
-});
+// self.addEventListener('fetch', (event) => {
+//   const cacheKey = precacheController.getCacheKeyForURL(event.request.url);
+  // event.respondWith(caches.match(cacheKey).then(...));
+// });
 
 
 // clean old assets

@@ -54,7 +54,7 @@ const routes = [
   {
     path: "/play/:playerId/task/levante/:taskId",
     name: "Levante",
-    component: () => import("../components/tasks/levante/TaskLevante.vue"),
+    component: () => import("../components/tasks/TaskLevante.vue"),
     props: { language: "en"},
     meta: { pageTitle: "Levante" },
   },
