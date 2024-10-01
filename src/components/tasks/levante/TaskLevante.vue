@@ -18,6 +18,7 @@
   import packageLockJson from '../../../../package-lock.json';
   import { useRoute } from 'vue-router';
   import {taskParameters } from '@/components/tasks/parameters'
+  import {TaskLauncher } from  '../../../../core-tasks/task-launcher/src/index.ts'
   
   // const props = defineProps({
   //   taskId: { type: String, default: 'vocab' },
@@ -29,7 +30,8 @@
   let levanteTaskLauncher;
   
   // const taskId = props.taskId;
-  const { version } = packageLockJson.packages['node_modules/@levante-framework/core-tasks'];
+  // const { version } = packageLockJson.packages['/../core-tasks'];
+  const version = "1.0.0temp"
   const router = useRouter();
   const gameStarted = ref(false);
   const authStore = useAuthStore();
@@ -70,9 +72,11 @@
   
   onMounted(async () => {
     try {
-      let module = await import('@levante-framework/core-tasks');
+      // let module = await import('@levante-framework/core-tasks');
+      // let module = await import('../../../../core-tasks');
       // let module = await import('../../core-tasks');
-      levanteTaskLauncher = module.TaskLauncher;
+      // levanteTaskLauncher = module.TaskLauncher;
+      levanteTaskLauncher = TaskLauncher
     } catch (error) {
       console.error('An error occurred while importing the game module.', error);
     }

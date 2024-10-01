@@ -174,9 +174,10 @@ export const initializeFirebaseProject = async (
     const kit = {
       firebaseApp: app,
       auth: optionallyMarkRaw('auth', getAuth(app)),
-      db: optionallyMarkRaw('db', initializeFirestore(app, {localCache: 
-        persistentLocalCache(/*settings*/{tabManager: persistentMultipleTabManager()})
-      })),
+      db: optionallyMarkRaw('db', getFirestore(app)),
+      // db: optionallyMarkRaw('db', initializeFirestore(app, {localCache: 
+      //   persistentLocalCache(/*settings*/{tabManager: persistentMultipleTabManager()})
+      // })),
       functions: optionallyMarkRaw('functions', getFunctions(app)),
       storage: optionallyMarkRaw('storage', getStorage(app)),
       perf: performance,
