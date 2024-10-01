@@ -1,0 +1,273 @@
+@use '../abstracts' as *;
+
+button {
+  &.button-base {
+    border-radius: $button-default-border-radius;
+    border-width: $button-default-border-width;
+    border-style: solid;
+    text-align: center;
+    font-size: $button-default-font-size;
+    font-weight: $button-default-font-weight;
+    color: $txt-white;
+    min-width: 60px;
+    min-height: 60px;
+    cursor: pointer;
+  }
+  &.primary {
+    @extend .button-base;
+    background: $bg-button-primary;
+    padding: $button-primary-padding;
+    border-color: $bg-accent_secondary;
+    box-shadow: $button-default-box-shadow rgba($bg-accent_secondary, 0.5) inset;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-dark;
+    color: $txt-white;
+
+    @include respond-to('small') {
+      font-size: $font-size-xxs;
+      font-weight: $font-weight-normal;
+      color: $txt-white;
+      padding: $button-primary-padding-small;
+      border-radius: $button-default-border-radius-small;
+    }
+
+    &:hover {
+      background: $bg-button-primary-hover;
+      border-color: $border-button-primary-hover;
+      box-shadow: $button-default-box-shadow rgba($border-button-primary-hover, 0.5) inset;
+    }
+
+    &:active {
+      background: $bg-button-primary-clicked;
+      border-color: $border-button-primary-clicked;
+      box-shadow:$button-default-box-shadow rgba($border-button-primary-clicked, 0.5) inset;
+    }
+
+    &:disabled {
+      background: $btn-disabled-bg;
+      border-color: $btn-disabled-inset;
+      box-shadow:$button-default-box-shadow $btn-disabled-inset inset;
+      cursor: no-drop;
+    }
+  }
+
+  &.secondary {
+    @extend .button-base;
+    background: $border-accent;
+    border-color: $bg-accent_secondary;
+    box-shadow: $button-secondary-box-shadow $bg-accent_secondary inset,
+      $button-secondary-inner-shadow $bg-button-secondary inset;
+    font-size: $font-size-l;
+    width: 2.5 * $font-size-l;
+    height: 2.5 * $font-size-l;
+
+    @include respond-to('small-medium') {
+      font-size: $font-size-m;
+      font-weight: $font-weight-normal;
+      border-radius: $button-default-border-radius-small;
+      width: 2.4 * $font-size-m;
+      height: 2.4 * $font-size-m;
+    }
+
+    @include respond-to('small') {
+      font-size: $font-size-m;
+      font-weight: $font-weight-normal;
+      border-radius: $button-default-border-radius-small;
+      width: 3*$font-size-m;
+      height: 3*$font-size-m;
+    }
+
+    &:hover {
+      background: $bg-button-primary-hover;
+      border-color: $border-button-primary-hover;
+      box-shadow: $button-secondary-box-shadow $border-button-primary-hover inset,
+        $button-secondary-inner-shadow $bg-button-secondary inset;
+    }
+
+    &:active {
+      background: $bg-button-primary-clicked;
+      border-color: $border-button-primary-clicked;
+      box-shadow: $button-secondary-box-shadow $border-button-primary-clicked inset,
+        $button-secondary-inner-shadow $bg-button-secondary inset;
+    }
+  }
+  &.secondary--green {
+    @extend .button-base;
+    background: $bg-green_base;
+    padding: $button-secondary-padding;
+    border-color: $border-green_dark;
+    box-shadow: $button-secondary-box-shadow $border-green_dark inset,
+      $button-secondary-inner-shadow $bg-green-gradient inset;
+    
+    @include respond-to('small') {
+      font-size: $font-size-l;
+      font-weight: $font-weight-normal;
+      color: $txt-white;
+      padding: $button-secondary-padding-small;
+      border-radius: $button-default-border-radius-small;
+      min-width: 40px;
+      min-height: 40px;
+    }
+
+    &:hover {
+      background: $bg-green-base-hover;
+      border-color: $border-button-green-hover;
+      box-shadow: $button-secondary-box-shadow $border-button-green-hover inset,
+        $button-secondary-inner-shadow $bg-green-gradient inset;
+    }
+
+    &:active {
+      background: $bg-green-base-clicked;
+      border-color: $border-button-green-clicked;
+      box-shadow: $button-secondary-box-shadow $border-button-green-clicked inset,
+        $button-secondary-inner-shadow $bg-green-gradient inset;
+    }
+  }
+
+  &.replay {
+    // This is also used by the Hearts and Flowers task
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    cursor: pointer;
+    border-radius: 16px;
+    padding: 16px;
+    background-color: rgba($bg-button-primary, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 64px;
+    height: 64px;
+    border: 2px solid $border-button-accent;
+
+    @include respond-to('small') {
+      width: 48px;
+      height: 48px;
+      padding: 12px;
+    }
+
+    &:hover {
+      background-color: rgba($bg-button-primary-hover, 0.4);
+      border: 2px solid $border-button-primary-hover;
+    }
+
+    &:active {
+      background-color: rgba($bg-button-primary-clicked, 0.6);
+      border: 2px solid $border-button-primary-clicked;
+    }
+
+    &:disabled {
+      background-color: rgba($bg-white-40, 0.6);
+      border: 2px solid $border-grey;
+      pointer-events: none;
+      svg {
+        path {
+          fill: $border-grey;
+        }
+      }
+    }
+  }
+
+  &.image {
+    @extend .button-base;
+    padding: 0;
+    box-sizing: border-box;
+    border-color: $bg-button-primary;
+
+    img {
+      border: none;
+      width: $response-size-default;
+      height: $response-size-default;
+      padding: 0;
+      margin: 0;
+      border-radius: $lev-spacing-s;
+      float: left;
+    }
+
+    @include respond-to('small-medium') {
+      border-radius: $lev-spacing-s;
+      img {
+        width: $response-size-sm;
+        height: $response-size-sm;
+        border-radius: $lev-spacing-xs;
+      }
+    }
+
+    @include respond-to('small') {
+      border-radius: $lev-spacing-s;
+      img {
+        width: $response-size-s;
+        height: $response-size-s;
+        border-radius: $lev-spacing-xs;
+      }
+    }
+
+    &:hover {
+      border-color: $bg-accent_secondary;
+    }
+
+    &:active {
+      border-color: $border-button-primary-clicked;
+    }
+  }
+
+  &.image-large {
+    @extend .button-base;
+    padding: 0;
+    box-sizing: border-box;
+    border-color: $bg-button-primary;
+
+    img {
+      border: none;
+      width: $lev-resized-buttons-2;
+      height: $lev-resized-buttons-2;
+      padding: 0;
+      margin: 0;
+      border-radius: $lev-spacing-s;
+      float: left;
+    }
+
+    &:hover {
+      border-color: $bg-accent_secondary;
+    }
+
+    &:active {
+      border-color: $border-button-primary-clicked;
+    }
+  }
+
+  &.image-medium {
+    @extend .button-base; 
+    padding: 0; 
+    box-sizing: border-box; 
+    border-color: $bg-button-primary;
+
+    img {
+      border: none;
+      width: $response-size-m;
+      height: $response-size-m;
+      padding: 0;
+      margin: 0;
+      border-radius: $lev-spacing-s;
+      float: left;
+    }
+
+    @include respond-to('small') {
+      border-radius: $lev-spacing-s;
+      img {
+        width: $response-size-s;
+        height: $response-size-s;
+        border-radius: $lev-spacing-xs;
+      }
+    }
+
+    &:hover {
+      border-color: $bg-accent_secondary;
+    }
+
+    &:active {
+      border-color: $border-button-primary-clicked;
+    }
+
+  }
+}

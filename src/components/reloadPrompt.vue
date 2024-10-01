@@ -1,11 +1,12 @@
-<script>
+<script setup lang="ts">
 import { useRegisterSW } from 'virtual:pwa-register/vue'
 import { pwaInfo } from 'virtual:pwa-info'
 
-console.log('pwainfo', pwaInfo)
+console.log(pwaInfo)
 
 // replaced dyanmicaly
-const reloadSW = '__RELOAD_SW__'
+const reloadSW: any = '__RELOAD_SW__'
+
 const {
   offlineReady,
   needRefresh,
@@ -66,7 +67,7 @@ async function close() {
   border-radius: 4px;
   z-index: 1;
   text-align: left;
-  box-shadow: 3px 4px 5px 0 #8885;
+  box-shadow: 3px 4px 5px 0px #8885;
 }
 .pwa-toast .message {
   margin-bottom: 8px;

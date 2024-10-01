@@ -1,0 +1,194 @@
+@use '../abstracts/' as *;
+
+.lev-row-container {
+  display: flex;
+  padding: $lev-spacing-s;
+  justify-content: center;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: $txt-primary;
+  margin: $lev-spacing-xxxs 0;
+
+  &.header {
+    p {
+      font-size: $font-size-m;
+      font-weight: $font-weight-bold;
+      margin: 0;
+    }
+    
+    @include respond-to('medium') {
+      display: flex;
+      padding: $lev-spacing-xs;
+      justify-content: center;
+      align-items: center;
+  
+      p {
+        font-size: $font-size-s;
+        font-weight: $font-weight-normal;
+        margin: 0;
+      }
+    }
+  
+    @include respond-to('small') {
+      display: flex;
+      padding: $lev-spacing-xxs;
+      justify-content: center;
+      align-items: center;
+  
+      p {
+        font-size: $font-size-xxs;
+        font-weight: $font-weight-normal;
+        margin: 0;
+      }
+    }
+  }
+
+  &.instruction {
+    display: flex;
+    padding: $lev-spacing-s;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 3px solid $bg-accent_secondary;
+    border-radius: 32px;
+    background-color: $bg-bubble-base;
+
+    p {
+      font-size: $font-size-xs;
+      font-weight: $font-weight-light;
+      line-height: 1.0;
+      margin: 0;
+    }
+    
+    @include respond-to('medium') {
+      display: flex;
+      padding: $lev-spacing-xs;
+      justify-content: center;
+      align-items: center;
+      border-radius: 24px;
+  
+      p {
+        font-size: $font-size-xxs;
+        font-weight: $font-weight-light;
+        line-height: 1.0;
+        margin: 0;
+      }
+    }
+  
+    @include respond-to('small') {
+      display: flex;
+      padding: $lev-spacing-xxs;
+      justify-content: center;
+      align-items: center;
+      border-radius: 16px;
+  
+      p {
+        font-size: $font-size-xxxs;
+        font-weight: $font-weight-light;
+        line-height: 1.0;
+        margin: 0;
+      }
+    }
+  }
+}
+
+.lev-stimulus-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 900px;
+  justify-content: center;
+  margin-top: 64px;
+  margin-bottom: 16px;
+  align-items: center;
+
+  img {
+    max-width: 100%;
+  }
+}
+
+.lev-stim-content {
+  display: flex;
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+  font-size: $font-size-l;
+  color: $txt-primary;
+  margin: $lev-spacing-s 0;
+
+  img {
+    border: none;
+    width: $lev-resized-buttons-2;
+    height: $lev-resized-buttons-2;
+    padding: 0;
+    margin: 0;
+    border-radius: $lev-spacing-s;
+  }
+}
+
+.lev-stim-content-x-3 {
+  @extend .lev-stim-content;
+
+  img {
+    width: calc(3 * $response-size-default);
+    height: calc(3 * $response-size-default);
+  }
+
+  @include respond-to('small-medium') {
+    img {
+      width: calc(3 * $response-size-sm);
+      height: calc(3 * $response-size-sm);
+    }
+  }
+
+  @include respond-to('small') {
+    img {
+      width: 3 * $response-size-s;
+      height: 3 * $response-size-s;
+    }
+  }
+
+}
+
+.lev-instructions-container {
+  text-align: center;
+  font-size: 1.3rem;
+
+  .lev-title {
+    text-align: center;
+    margin-bottom: 3vh;
+    font-size: 2rem;
+  }
+
+  .lev-content {
+    text-align: left;
+    margin: 0 auto;
+    // max-width: 60vw;
+    line-height: 1.5;
+  }
+
+  .lev-footer {
+    margin-top: 1.5rem;
+  }
+}
+
+.lev-staggered-responses {
+  &.lev-staggered-disabled {
+    pointer-events: none;
+  }
+
+  &.lev-staggered-grayscale {
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
+    filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    filter: gray; /* IE6-9 */
+    -webkit-filter: grayscale(100%); /* Chrome 19+, Safari 6+, Safari 6+ iOS */
+  }
+
+  &.lev-staggered-opacity {
+    opacity: 0.6;
+  }
+}

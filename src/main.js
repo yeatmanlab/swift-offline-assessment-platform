@@ -167,16 +167,18 @@ app.use(VueQueryPlugin);
 
 // app.directive('tooltip', PvTooltip);
 
+
+// I can't remember what these lines down here were for? 
 // Register all components that begin with App
-const appComponentFiles = import.meta.glob('./components/App*.vue', { eager: true });
+// const appComponentFiles = import.meta.glob('./components/App*.vue', { eager: true });
 
-Object.entries(appComponentFiles).forEach(([path, m]) => {
-  const componentName = path.split('/').pop().replace('.vue', '');
-  app.component(componentName, m.default);
-});
+// Object.entries(appComponentFiles).forEach(([path, m]) => {
+//   const componentName = path.split('/').pop().replace('.vue', '');
+//   app.component(componentName, m.default);
+// });
 
-import { Buffer } from 'buffer';
-// eslint-disable-next-line no-undef
-globalThis.Buffer = Buffer;
+// import { Buffer } from 'buffer';
+// // eslint-disable-next-line no-undef
+// globalThis.Buffer = Buffer;
 
 app.mount('#app');

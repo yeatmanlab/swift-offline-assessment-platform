@@ -22,7 +22,7 @@ export default defineConfig({
     mkcert(),
     VitePWA({
       injectRegister: "auto",
-    strategies: "injectManifest",
+      strategies: "injectManifest",
       srcDir: "src",
       filename: "sw.js",
       registerType: "autoUpdate",
@@ -58,13 +58,21 @@ export default defineConfig({
       },
 
       injectManifest: {
-        globPatterns: ["**/*.{js,css,html,svg,png,ico}"],
+        globPatterns: [
+          "src/assets/**/*.{js,css,html,svg,png,ico,vue}",
+          "src/pages/**/*.{js,css,html,svg,png,ico,vue}",
+          "src/components/**/*.{js,css,html,svg,png,ico,vue}",
+          "src/store/**/*.{js,css,html,svg,png,ico,vue}",
+          "src/router/**/*.{js,css,html,svg,png,ico,vue}",
+          "src/core-tasks/task-launcher/src/**/*.{js,css,html,svg,png,ico,vue}",
+          // "**/*.{js,css,html,svg,png,ico,vue}"],
+        ]
       },
 
       devOptions: {
         enabled: true,
         navigateFallback: "index.html",
-        suppressWarnings: true,
+        suppressWarnings: false,
         type: "module",
       },
     }),

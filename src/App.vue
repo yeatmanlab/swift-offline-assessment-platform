@@ -1,15 +1,13 @@
 <template>
   <router-view />
-    <ReloadPrompt />
+  <ReloadPrompt />
 </template>
 
 <script setup>
-import {ref, onBeforeMount} from 'vue';
-import { useRoute } from 'vue-router';
-import { useAuthStore } from '@/store/auth';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { fetchDocById } from '@/helpers/query/utils';
-import ReloadPrompt from '@/components/ReloadPrompt.vue';
+import { ref, onBeforeMount } from "vue";
+import { useAuthStore } from "@/store/auth";
+import { fetchDocById } from "@/helpers/query/utils";
+import ReloadPrompt from "@/components/ReloadPrompt.vue";
 
 const isAuthStoreReady = ref(false);
 
@@ -19,27 +17,15 @@ onBeforeMount(async () => {
   authStore.setUser();
   await authStore.initStateFromRedirect().then(async () => {
     if (authStore.uid) {
-      const userData = await fetchDocById('users', authStore.uid);
-      const userClaims = await fetchDocById('userClaims', authStore.uid);
+      const userData = await fetchDocById("users", authStore.uid);
+      const userClaims = await fetchDocById("userClaims", authStore.uid);
       authStore.userData = userData;
       authStore.userClaims = userClaims;
     }
   });
   isAuthStoreReady.value = true;
-  //login as test user
-  console.log("auth store", authStore)
-  // const auth  = getAuth(authStore.admin.auth);
-  // authStore.signInWithGooglePopup();
-  // try {
-  // authStore.logInWithEmailAndPassword({email:'testingUser4@roar-auth.com', password: 'password4'});
-  // }
-  // catch (error) {
-  //   console.log("error", error)
-  // } 
-
 });
 </script>
-
 
 <style scoped>
 .logo {
