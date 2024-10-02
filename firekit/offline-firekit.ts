@@ -91,6 +91,21 @@ export class OfflineFirekit extends RoarFirekit {
             await this.getMyData();
           }
 
+          const tempAssigningOrgs = {
+            schools: [],
+            classes: [],
+            districts: [],
+            groups: ["rfhfUU0qKyPKKQewfVd4"],
+            families: [],
+          };
+          const tempReadOrgs = {
+            schools: [],
+            classes: [],
+            districts: [],
+            groups: ["rfhfUU0qKyPKKQewfVd4"],
+            families: [],
+          };
+
           const assigningOrgs = assignmentDocSnap.data().assigningOrgs;
           const readOrgs = assignmentDocSnap.data().readOrgs;
           console.log("levantetaskid", taskId);
@@ -157,15 +172,7 @@ export class OfflineFirekit extends RoarFirekit {
             },
           };
 
-            /// todo: figure out which params can be obviated for the offline flavor
-          console.log(
-            "various offlinefirekit params: assigningorgs, read orgs, taskinfo",
-            assigningOrgs,
-            readOrgs,
-            taskInfo
-          );
-          // TODO: use target participant user info instead of the default
-          //     // This would allow an admin user to launch another user into
+          /// todo: figure out which params can be obviated for the offline flavor
           return new OfflineAppKit({
             firebaseProject: this.app,
             userInfo: this.roarAppUserInfo,
