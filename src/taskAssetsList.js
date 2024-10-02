@@ -150,257 +150,257 @@ export const taskAssets = {
 export const egmaTaskAssetsList = [
   {
     url: "https://storage.googleapis.com/egma-math/en/mobile/purple_street.png",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/clickButton.jpg",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/down-arrow.svg",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/left-arrow.svg",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/right-arrow.svg",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/up-arrow.svg",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/shared/ROARLion.gif",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/shared/blank.png",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/shared/coin_bag.gif",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/shared/go.png",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/shared/goButton.png",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/shared/ok.png",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/shared/speakerIcon.webp",
-    version: "v1",
+    revision: "v1",
   },
 
   // Audio
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/addition-prompt1.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/addition-prompt2.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/ending.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/feedback-good-job.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/feedback-nice-work.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/feedback-try-again.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/feedbackCorrect.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/great-job-click.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/ins.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/math-adult-instructions-1.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/math-adult-instructions-2.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/math-instructions1.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/math-post-practice.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/missing-number-prompt1.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/missing-number-prompt2.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/mulitiplication-prompt2.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/multiplication-prompt1.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/multiplication-prompt2.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/shared/nullAudio.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/number-comparison-prompt1.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/number-comparison-prompt2.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/number-identification-1.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/number-identification-10.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/number-identification-11.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/number-identification-12.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/number-identification-13.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/number-identification-14.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/number-identification-15.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/number-identification-16.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/number-identification-17.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/number-identification-18.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/number-identification-19.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/number-identification-2.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/number-identification-20.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/number-identification-21.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/number-identification-3.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/number-identification-4.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/number-identification-5.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/number-identification-6.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/number-identification-7.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/number-identification-8.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/number-identification-9.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/number-identification-prompt1.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/number-line-instruct1.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/number-line-prompt1.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/number-line-slider-prompt1.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/subtraction-prompt1.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/subtraction-prompt2.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/surveyPostPractice.mp3",
-    version: "v1",
+    revision: "v1",
   },
   {
     url: "https://storage.googleapis.com/egma-math/en/shared/surveyPractice.mp3",
-    version: "v1",
+    revision: "v1",
   },
 ];
 

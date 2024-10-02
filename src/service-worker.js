@@ -10,43 +10,39 @@ import { NavigationRoute, registerRoute } from "workbox-routing";
 import { egmaTaskAssetsList, taskAssetsList } from "./taskAssetsList";
 
 self.skipWaiting();
+
+// Allow service worker to controll clients after activation
 clientsClaim();
 
-// clean old assets
+// remove old caches
 cleanupOutdatedCaches();
 
-// self.__WB_MANIFEST is the default injection point
-// add various pages and components to cachelisa
-
+const precacheResources = [
+  "/",
+  "/index.html",
+  "/src/main.js",
+  "/src/App.vue",
+  "/src/pages/Home.vue",
+  "/src/pages/PlayerLauncher.js",
+];
 const precacheController = new PrecacheController();
 
 // add levante task assets
-console.log("taskAssetsList", taskAssets);
-precacheController.addToCacheList(egmaTaskAssetsList)
-precacheController.addToCacheList(self.__WB_MANIFEST)
-
+precacheController.addToCacheList(precacheResources);
+precacheController.addToCacheList(egmaTaskAssetsList);
+// self.__WB_MANIFEST is the default injection point
+precacheController.addToCacheList(self.__WB_MANIFEST);
 
 // self.addEventListener('fetch', (event) => {
 //   const cacheKey = precacheController.getCacheKeyForURL(event.request.url);
 // event.respondWith(caches.match(cacheKey).then(...));
 // });
 
-
-/** @type {RegExp[] | undefined} */
-let allowlist;
 // in dev mode, we disable precaching to avoid caching issues
 // if (import.meta.env.DEV) allowlist = [/^\/$/];
 // matches for root, /play/:playerId, and /play/:playerId/task/:taskId
-allowlist = [/^\/$/, /^\/play\/[^/]+\/task\/[^/]+$/, /^\/play\/[^/]+$/] // Add other routes here
+const allowlist = [/^\/$/, /^\/play\/[^/]+\/task\/[^/]+$/, /^\/play\/[^/]+$/]; // Add other routes here
 
-
-registerRoute(
-  new NavigationRoute(createHandlerBoundToURL("index.html"), { allowlist })
-);
-
-registerRoute(
-  new NavigationRoute(createHandlerBoundToURL("/"), { allowlist })
-);
 
 // Init Event Listeners: Install, activate, fetch
 // During the Install step, we cache our core assets
@@ -54,128 +50,96 @@ registerRoute(
 // During the Fetch event, we match requests with currently cached assets
 
 // Establish a cache name
-const coreCacheBaseName = 'soap_offline_core_cache';
-const taskCacheBaseName = 'soap_offline_task_cache';
-const cacheVersion = 'v1';
+const coreCacheBaseName = "soap_offline_core_cache";
+const taskCacheBaseName = "soap_offline_task_cache";
+const cacheVersion = "v1";
 const coreCacheName = `${taskCacheBaseName}-${cacheVersion}`;
 const taskCacheName = `${coreCacheBaseName}-${cacheVersion}`;
 
 self.addEventListener("install", (event) => {
-  // Perform install steps
+  console.log("servicesoap");
   event.waitUntil(
-    caches.open(cacheName).then((cache) => {
-      console.log('Opened cache');
-      return cache.addAll([
-        'src/offline.html',
-      ]);
+    precacheController.install(event).then((cache) => {
+      caches.open(coreCacheName).then((cache) => {
+        console.log("Opened cache");
+        return cache.addAll(precacheResources);
+      });
     })
   );
-})
+});
 
 // make sure to remove old caches
-addEventListener('activate', function (event) {
+self.addEventListener("activate", function (event) {
   event.waitUntil(
-      caches.keys().then(function (keys) { 
-          return Promise.all(keys
-              .filter(key => key !== coreCacheName && key !== taskCacheName)
-              .map(key => caches.delete(key))
-          )
-      })
-  )
+    caches.keys().then(function (keys) {
+      return Promise.all(
+        keys
+          .filter((key) => key !== coreCacheName && key !== taskCacheName)
+          .map((key) => caches.delete(key))
+      );
+    })
+  );
 });
 
-self.addEventListener('fetch', (event) => {
-  // Check if this is a request for an image
-  if (event.request.destination === 'image') {
-    event.respondWith(caches.open(cacheName).then((cache) => {
-      // Go to the cache first
-      return cache.match(event.request.url).then((cachedResponse) => {
-        // Return a cached response if we have one
-        if (cachedResponse) {
-          return cachedResponse;
-        }
-
-        // Otherwise, hit the network
-        return fetch(event.request).then((fetchedResponse) => {
-          // Add the network response to the cache for later visits
-          cache.put(event.request, fetchedResponse.clone());
-
-          // Return the network response
-          return fetchedResponse;
-        });
-      });
-    }));
-  } else {
-    return;
-  }
+self.addEventListener("fetch", (event) => {
+  console.log("Fetch intercepted for:", event.request.url);
+  event.respondWith(
+    caches.match(event.request).then((cachedResponse) => {
+      if (cachedResponse) {
+        return cachedResponse;
+      }
+      return fetch(event.request);
+    })
+  );
 });
 
-// Handle images:
-const imageRoute = new Route(
-  ({ request }) => {
-    return request.destination === "image";
-  },
-  new StaleWhileRevalidate({
-    cacheName: "images",
-  })
-);
+// registerRoute(
+//   new NavigationRoute(createHandlerBoundToURL("index.html"), { allowlist })
+// );
 
-// Handle scripts:
-const scriptsRoute = new Route(
-  ({ request }) => {
-    return request.destination === "audio";
-  },
-  new CacheFirst({
-    cacheName: "audio",
-  })
-);
+// registerRoute(new NavigationRoute(createHandlerBoundToURL("/"), { allowlist }));
 
-// Handle styles:
-const stylesRoute = new Route(
-  ({ request }) => {
-    return request.destination === "video";
-  },
-  new CacheFirst({
-    cacheName: "video",
-  })
-);
+// self.addEventListener('fetch', (event) => {
+//   // Check if this is a request for an image
+//   if (event.request.destination === 'image') {
+//     event.respondWith(caches.open(cacheName).then((cache) => {
+//       // Go to the cache first
+//       return cache.match(event.request.url).then((cachedResponse) => {
+//         // Return a cached response if we have one
+//         if (cachedResponse) {
+//           return cachedResponse;
+//         }
 
+//         // Otherwise, hit the network
+//         return fetch(event.request).then((fetchedResponse) => {
+//           // Add the network response to the cache for later visits
+//           cache.put(event.request, fetchedResponse.clone());
 
-console.log("caching images, audio, and video");
-// handle images 
-registerRoute(
-  /.+\.png/, 
+//           // Return the network response
+//           return fetchedResponse;
+//         });
+//       });
+//     }));
+//   } else {
+//     return;
+//   }
+// });
 
-  new CacheFirst({ // OPAQUE -> only possibility = StaleWhileRevalidate or NetworkFirst. CacheFirst won't work
-    cacheName: cacheName,
-    plugins: [
-      new workbox.expiration.Plugin({
-        maxEntries: 500,
-      })
-    ],
-  })
-);
-
-// Register routes
-registerRoute(imageRoute);
-registerRoute(scriptsRoute);
-registerRoute(stylesRoute);
-
-registerRoute(
-  ({ url }) => url.origin === "https://storage.googleapis.com/",
-  new CacheFirst({
-    cacheName: "bucketAssets",
-    plugins: [
-      new CacheableResponsePlugin({
-        statuses: [0, 200],
-      }),
-      new ExpirationPlugin({
-        maxEntries: 100,
-        maxAgeSeconds: 365 * 24 * 60 * 60, // keep cache for a year
-      }),
-    ],
-  })
-);
+// registerRoute(
+//   ({ url }) => url.origin === "https://storage.googleapis.com/",
+//   new CacheFirst({
+//     cacheName: "bucketAssets",
+//     plugins: [
+//       new CacheableResponsePlugin({
+//         statuses: [0, 200],
+//       }),
+//       new ExpirationPlugin({
+//         maxEntries: 100,
+//         maxAgeSeconds: 365 * 24 * 60 * 60, // keep cache for a year
+//       }),
+//     ],
+//   })
+// );
 
 // registerRoute(
 //   ({ request }) => request.destination === "image",
