@@ -28,10 +28,9 @@ const precacheResources = [
 const precacheController = new PrecacheController();
 
 // add levante task assets
-precacheController.addToCacheList(precacheResources);
-precacheController.addToCacheList(egmaTaskAssetsList);
 // self.__WB_MANIFEST is the default injection point
 precacheController.addToCacheList(self.__WB_MANIFEST);
+precacheController.addToCacheList(egmaTaskAssetsList);
 
 // self.addEventListener('fetch', (event) => {
 //   const cacheKey = precacheController.getCacheKeyForURL(event.request.url);
@@ -43,7 +42,6 @@ precacheController.addToCacheList(self.__WB_MANIFEST);
 // matches for root, /play/:playerId, and /play/:playerId/task/:taskId
 const allowlist = [/^\/$/, /^\/play\/[^/]+\/task\/[^/]+$/, /^\/play\/[^/]+$/]; // Add other routes here
 
-
 // Init Event Listeners: Install, activate, fetch
 // During the Install step, we cache our core assets
 // During the Activate event, we cache our task assets
@@ -53,23 +51,24 @@ const allowlist = [/^\/$/, /^\/play\/[^/]+\/task\/[^/]+$/, /^\/play\/[^/]+$/]; /
 const coreCacheBaseName = "soap_offline_core_cache";
 const taskCacheBaseName = "soap_offline_task_cache";
 const cacheVersion = "v1";
-const coreCacheName = `${taskCacheBaseName}-${cacheVersion}`;
-const taskCacheName = `${coreCacheBaseName}-${cacheVersion}`;
+const coreCacheName = `${coreCacheBaseName}-${cacheVersion}`;
+const taskCacheName = `${taskCacheBaseName}-${cacheVersion}`;
 
 self.addEventListener("install", (event) => {
-  console.log("servicesoap");
   event.waitUntil(
-    precacheController.install(event).then((cache) => {
-      caches.open(coreCacheName).then((cache) => {
-        console.log("Opened cache");
-        return cache.addAll(precacheResources);
-      });
+    precacheController.install(event).then((event) => {
+      event.waitUntil(
+        caches
+          .open(coreCacheName)
+          .then((cache) => cache.addAll(precacheResources))
+      );
     })
   );
 });
 
 // make sure to remove old caches
 self.addEventListener("activate", function (event) {
+  self.skipWaiting();
   event.waitUntil(
     caches.keys().then(function (keys) {
       return Promise.all(
@@ -78,6 +77,19 @@ self.addEventListener("activate", function (event) {
           .map((key) => caches.delete(key))
       );
     })
+  );
+});
+
+// add task caches
+self.addEventListener("activate", function (event) {
+  console.log("selfsoapactivate");
+  self.skipWaiting();
+  event.waitUntil(
+    event.waitUntil(
+      caches.open(taskCacheName).then((cache) => {
+        return cache.addAll(egmaTaskAssetsList);
+      })
+    )
   );
 });
 
