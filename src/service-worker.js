@@ -10,7 +10,7 @@ import { NavigationRoute, registerRoute } from "workbox-routing";
 import { egmaTaskAssetsList, taskAssetsList } from "./taskAssetsList";
 
 self.skipWaiting();
-self.clientsClaim();
+clientsClaim();
 
 // clean old assets
 cleanupOutdatedCaches();
@@ -35,10 +35,17 @@ precacheController.addToCacheList(self.__WB_MANIFEST)
 /** @type {RegExp[] | undefined} */
 let allowlist;
 // in dev mode, we disable precaching to avoid caching issues
-if (import.meta.env.DEV) allowlist = [/^\/$/];
+// if (import.meta.env.DEV) allowlist = [/^\/$/];
+// matches for root, /play/:playerId, and /play/:playerId/task/:taskId
+allowlist = [/^\/$/, /^\/play\/[^/]+\/task\/[^/]+$/, /^\/play\/[^/]+$/] // Add other routes here
+
 
 registerRoute(
   new NavigationRoute(createHandlerBoundToURL("index.html"), { allowlist })
+);
+
+registerRoute(
+  new NavigationRoute(createHandlerBoundToURL("/"), { allowlist })
 );
 
 // Init Event Listeners: Install, activate, fetch

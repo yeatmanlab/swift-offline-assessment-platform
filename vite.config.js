@@ -24,7 +24,7 @@ export default defineConfig({
       injectRegister: "auto",
       strategies: "injectManifest",
       srcDir: "src",
-      filename: "sw.js",
+      filename: "service-worker.js",
       registerType: "autoUpdate",
       manifest: {
         name: "Swift Offline Assessment Platform",
