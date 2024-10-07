@@ -56,14 +56,21 @@ const taskCacheName = `${taskCacheBaseName}-${cacheVersion}`;
 
 precacheController.addToCacheList(self.__WB_MANIFEST);
 precacheController.addToCacheList(precacheResources);
+precacheController.addToCacheList(egmaTaskAssetsList);
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
     precacheController.install(event).then((event) => {
-      // event.waitUntil(
-      caches
-        .open(coreCacheName)
-        .then((cache) => cache.addAll(precacheResources));
+      event.waitUntil(
+        caches
+          .open(coreCacheName)
+          .then((cache) => cache.addAll(precacheResources))
+      );
+    })
+  );
+  event.waitUntil(
+    caches.open(taskCacheName).then((cache) => {
+      return cache.addAll(egmaTaskAssetsList);
     })
   );
 });
@@ -80,7 +87,6 @@ self.addEventListener("activate", function (event) {
   self.skipWaiting();
   console.log("selfsoapactivate");
   // Passing in event is required in Workbox v6+
-  precacheController.addToCacheList(egmaTaskAssetsList);
   event.waitUntil(precacheController.activate(event));
 
   event.waitUntil(
@@ -90,12 +96,6 @@ self.addEventListener("activate", function (event) {
           .filter((key) => key !== coreCacheName && key !== taskCacheName)
           .map((key) => caches.delete(key))
       );
-    })
-  );
-  event.waitUntil(
-    caches.open(taskCacheName).then((cache) => {
-      // return cache.addAll(egmaTaskAssetsList);
-      return cache.addAll(egmaTaskAssetsList);
     })
   );
 });
