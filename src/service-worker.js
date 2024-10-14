@@ -124,8 +124,5 @@ self.addEventListener("fetch", (event) => {
   );
 });
 
-// registerRoute(
-//   new NavigationRoute(createHandlerBoundToURL("/index.html"), { allowlist })
-// );
 
 // registerRoute(new NavigationRoute(createHandlerBoundToURL("/"), { allowlist }));

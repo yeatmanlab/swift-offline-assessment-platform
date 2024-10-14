@@ -10,6 +10,7 @@ import {
 import './styles/task.scss';
 import taskConfig from './tasks/taskConfig';
 import { RoarAppkit } from '@bdelab/roar-firekit';
+import { get } from 'lodash';
 
 export let mediaAssets: MediaAssetsType;
 export class TaskLauncher {

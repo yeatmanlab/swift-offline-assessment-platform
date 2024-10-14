@@ -35,13 +35,40 @@
           <div class="text-lg font-bold">Levante Tasks</div>
           <div class="flex flex-col gap-3">
             <a :href="'/play/' + playerId + '/task/levante/intro'">
-              <button class="btn-ghost">LEVANTE Intro</button>
+              <button class="btn-ghost">Hearts and Flowers</button>
             </a>
             <a :href="'/play/' + playerId + '/task/levante/vocab'">
-              <button class="btn-ghost">LEVANTE Vocab</button>
+              <button class="btn-ghost">Same Same-Different-Selection</button>
             </a>
             <a :href="'/play/' + playerId + '/task/levante/egma-math'">
-              <button class="btn-ghost">LEVANTE - Math Game</button>
+              <button class="btn-ghost">Memory Game</button>
+            </a>
+            <a :href="'/play/' + playerId + '/task/levante/intro'">
+              <button class="btn-ghost">Matrix Reasoning</button>
+            </a>
+            <a :href="'/play/' + playerId + '/task/levante/vocab'">
+              <button class="btn-ghost">Mental Reasoning</button>
+            </a>
+            <a :href="'/play/' + playerId + '/task/levante/egma-math'">
+              <button class="btn-ghost">TROG (Syntax)</button>
+            </a>
+            <a :href="'/play/' + playerId + '/task/levante/egma-math'">
+              <button class="btn-ghost">Vocab</button>
+            </a>
+            <a :href="'/play/' + playerId + '/task/levante/egma-math'">
+              <button class="btn-ghost">Phoneme</button>
+            </a>
+            <a :href="'/play/' + playerId + '/task/levante/egma-math'">
+              <button class="btn-ghost">Sentence</button>
+            </a>
+            <a :href="'/play/' + playerId + '/task/levante/egma-math'">
+              <button class="btn-ghost">Word</button>
+            </a>
+            <a :href="'/play/' + playerId + '/task/levante/egma-math'">
+              <button class="btn-ghost">Math</button>
+            </a>
+            <a :href="'/play/' + playerId + '/task/levante/egma-math'">
+              <button class="btn-ghost">Theory of Mind</button>
             </a>
             <!-- <a href="/play/teak1023/task/sre">
               <button class="btn-ghost">LEVANTE - SRE</button>
