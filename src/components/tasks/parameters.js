@@ -269,7 +269,7 @@ export const taskParameters = {
     variant: {
       age: null,
       buttonLayout: "default",
-      corpus: "null",
+      corpus: "trog-item-bank",
       keyHelpers: false,
       language: "en",
       maxIncorrect: 3,
