@@ -208,4 +208,136 @@ export const taskParameters = {
       taskName: "memory-game",
     },
   },
+  "matrix-reasoning": {
+    task: {
+      description: "Find the missing piece to complete the puzzle.",
+      image:
+        "https://storage.googleapis.com/road-dashboard/shared/matrix-reasoning-logo.png",
+      name: "Puzzle Game",
+    },
+    variant: {
+      age: null,
+      buttonLayout: "default",
+      corpus: "null",
+      keyHelpers: false,
+      language: "en",
+      maxIncorrect: 3,
+      maxTime: 100,
+      numOfPracticeTrials: 2,
+      numberOfTrials: 300,
+      sequentialPractice: true,
+      sequentialStimulus: true,
+      skipInstructions: true,
+      stimulusBlocks: 3,
+      stormItemId: false,
+      taskName: "matrix-game",
+    },
+  },
+  "mental-reasoning": {
+    task: {
+      description: "Find the missing piece to complete the puzzle.",
+      image:
+        "https://storage.googleapis.com/road-dashboard/shared/matrix-reasoning-logo.png",
+      name: "Puzzle Game",
+    },
+    variant: {
+      age: null,
+      buttonLayout: "default",
+      corpus: "null",
+      keyHelpers: false,
+      language: "en",
+      maxIncorrect: 3,
+      maxTime: 100,
+      numOfPracticeTrials: 2,
+      numberOfTrials: 300,
+      sequentialPractice: true,
+      sequentialStimulus: true,
+      skipInstructions: true,
+      stimulusBlocks: 3,
+      stormItemId: false,
+      taskName: "mental-reasoning",
+    },
+  },
+  trog: {
+    task: {
+      description: "Listen to the phrases and choose the right picture.",
+      image:
+        "https://storage.googleapis.com/road-dashboard/shared/trog-logo.png",
+
+      name: "Words and Pictures Game",
+    },
+    variant: {
+      age: null,
+      buttonLayout: "default",
+      corpus: "null",
+      keyHelpers: false,
+      language: "en",
+      maxIncorrect: 3,
+      maxTime: 100,
+      numOfPracticeTrials: 2,
+      numberOfTrials: 300,
+      sequentialPractice: true,
+      sequentialStimulus: true,
+      skipInstructions: true,
+      stimulusBlocks: 3,
+      stormItemId: false,
+      taskName: "trog",
+    },
+  },
+  pa: {
+    task: {
+      description: "Identify the sounds in the words",
+      image:
+        "https://storage.googleapis.com/road-dashboard/shared/trog-logo.png",
+      name: "Pa",
+    },
+    variant: {
+      consent: false,
+      numTestItems: null,
+      skipInstructions: true,
+      userMode: "fixed",
+    },
+  },
+  sre: {
+    task: {
+      description:
+        "Read the sentences as quickly as you can and decide if they are true or false.",
+      image:
+        "https://raw.githubusercontent.com/yeatmanlab/roar-assets/main/roar-apps/sentence-no-lion.png",
+      name: "Sre",
+    },
+    variant: {
+      consent: true,
+      recruitment: null,
+      storyOption: null,
+      skipInstructions: true,
+      timerLength: 180000,
+      userMode: null,
+    },
+  },
+  "theory-of-mind": {
+    task: {
+      description: "Listen to the stories and answer the questions.",
+      image:
+        "https://storage.googleapis.com/road-dashboard/shared/theory-of-mind-logo.png",
+      name: "Theory of Mind",
+    },
+    variant: {
+      age: null,
+      buttonLayout: "default",
+      corpus: "theory-of-mind-item-bank",
+      keyHelpers: false,
+      language: "en",
+      maxIncorrect: 3,
+      maxTime: 100,
+      numOfPracticeTrials: 2,
+      numberOfTrials: 300,
+      sequentialPractice: true,
+      sequentialStimulus: true,
+      skipInstructions: true,
+      stimulusBlocks: 3,
+      stormItemId: false,
+      taskName: "theory-of-mind",
+    },
+  },
 };
