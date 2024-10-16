@@ -18,15 +18,14 @@
 <script setup>
 import Navbar from "@/components/Navbar.vue";
 import { ref } from "vue";
-import { useAuthStore,  } from "@/store/auth";
-import { storeToRefs } from 'pinia';
-import { collection, query, where, getDocs } from "firebase/firestore";
-
-
-
+import { useAuthStore } from "@/store/auth";
+import { storeToRefs } from "pinia";
 const authStore = useAuthStore();
-console.log("baba", authStore)
-const db = roarfirekit.value?.app.db
+const { roarfirekit } = storeToRefs(authStore);
+
+console.log("baba", roarfirekit);
+const offlineUsers = await roarfirekit.getOfflineUsers();
+console.log("offlineusers", offlineUsers);
 
 // console.log("baba", roarfirekit)
 // console.log("firekit76", db)
@@ -40,9 +39,7 @@ const db = roarfirekit.value?.app.db
 // const querySnapshot = await getDocs(offlineUsers);
 // console.log('qs', querySnapshot)
 
-
 // console.log('userdata', authStore.userData)
-
 
 // this.runRef = doc(
 //   collection(this.user.userRef, "offlineUsers", this.targetUser, "runs")
