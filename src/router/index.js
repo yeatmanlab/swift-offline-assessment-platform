@@ -115,7 +115,6 @@ router.beforeEach(async (to, from, next) => {
   // Check user roles
   const isUserAdmin = store.isUserAdmin;
   const isUserSuperAdmin = store.isUserSuperAdmin;
-  console.log("st0oreadmin", store);
 
   // All current conditions:
   // 1. Super Admin: true, Admin: true

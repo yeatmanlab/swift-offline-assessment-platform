@@ -66,11 +66,11 @@ self.addEventListener("install", (event) => {
   //       .then((cache) => cache.addAll(precacheResources));
   //   })
   // );
-  event.waitUntil(
-    caches.open(taskCacheName).then((cache) => {
-      return cache.addAll(egmaTaskAssetsList);
-    })
-  );
+  // event.waitUntil(
+  //   caches.open(taskCacheName).then((cache) => {
+  //     return cache.addAll(egmaTaskAssetsList);
+  //   })
+  // );
 });
 
 // self.addEventListener("fetch", (event) => {
@@ -83,7 +83,6 @@ self.addEventListener("install", (event) => {
 // add task caches
 self.addEventListener("activate", function (event) {
   self.skipWaiting();
-  console.log("selfsoapactivate");
   // Passing in event is required in Workbox v6+
   event.waitUntil(precacheController.activate(event));
 

@@ -1,8 +1,8 @@
 import { RoarFirekit } from "./firekit";
 import { getTaskAndVariant } from "./firestore/query-assessment";
-import { doc, runTransaction } from "firebase/firestore";
 import { Assessment, AssignedAssessment, UserType } from "./interfaces";
 import { UserInfo, UserInput } from "./firestore/app/user";
+import { collection, doc, getDoc, getDocs, runTransaction } from "firebase/firestore";
 import { OfflineAppKit } from "./firestore/app/offline-appkit";
 import { taskParameters } from "../src/components/tasks/parameters";
 
@@ -211,5 +211,31 @@ export class OfflineFirekit extends RoarFirekit {
     });
 
     return appKit;
+  }
+
+  async getOfflineUsers() {
+    const docSnap = await getDocs(collection(this.app!.db, this?.roarUid, "offlineUsers"));
+    if (docSnap.exists()) {
+      const data = docSnap.data();
+      const gitHubUrl = `https://raw.githubusercontent.com/${_get(
+        data,
+        "gitHubOrg"
+      )}/${_get(data, "gitHubRepository")}/${_get(
+        data,
+        "currentCommit"
+      )}/${_get(data, "fileName")}`;
+      try {
+        const response = await fetch(gitHubUrl);
+        const legalText = await response.text();
+        return {
+          text: legalText,
+          version: _get(data, "currentCommit"),
+        };
+      } catch (e) {
+        throw new Error("Error retrieving consent document from GitHub.");
+      }
+    } else {
+      return null;
+    }
   }
 }

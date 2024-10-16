@@ -18,16 +18,19 @@
 <script setup>
 import Navbar from "@/components/Navbar.vue";
 import { ref } from "vue";
-import { useAuthStore } from "@/store/auth";
+import { useAuthStore,  } from "@/store/auth";
+import { storeToRefs } from 'pinia';
 import { collection, query, where, getDocs } from "firebase/firestore";
 
 
 
 const authStore = useAuthStore();
-const db = authStore.roarfirekit?.app?.db; 
+console.log("baba", authStore)
+const db = roarfirekit.value?.app.db
 
-console.log("authstore", authStore.uid)
-console.log("authstore", authStore.roarfirekit.app.db)
+// console.log("baba", roarfirekit)
+// console.log("firekit76", db)
+// // this.dbRefs!.app.tasks
 // const offlineUsersSnapshot = await getDocs(collection(db, authStore?.uid, "offlineUsers"));
 // offlineUserSnapshot.forEach((doc) => {
 //   // doc.data() is never undefined for query doc snapshots
