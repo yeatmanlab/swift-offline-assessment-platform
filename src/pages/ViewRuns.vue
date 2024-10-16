@@ -19,12 +19,28 @@
 import Navbar from "@/components/Navbar.vue";
 import { ref } from "vue";
 import { useAuthStore } from "@/store/auth";
+import { collection, query, where, getDocs } from "firebase/firestore";
+
+
 
 const authStore = useAuthStore();
+const db = authStore.roarfirekit?.app?.db; 
 
-const offlineUsers = ref([]);
+console.log("authstore", authStore.uid)
+console.log("authstore", authStore.roarfirekit.app.db)
+// const offlineUsersSnapshot = await getDocs(collection(db, authStore?.uid, "offlineUsers"));
+// offlineUserSnapshot.forEach((doc) => {
+//   // doc.data() is never undefined for query doc snapshots
+//   console.log(doc.id, " => ", doc.data());
+// });
 
-console.log('userdata', authStore.userData)
+// const querySnapshot = await getDocs(offlineUsers);
+// console.log('qs', querySnapshot)
+
+
+// console.log('userdata', authStore.userData)
+
+
 // this.runRef = doc(
 //   collection(this.user.userRef, "offlineUsers", this.targetUser, "runs")
 // );

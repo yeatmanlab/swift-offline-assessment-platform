@@ -59,15 +59,13 @@ precacheController.addToCacheList(precacheResources);
 precacheController.addToCacheList(egmaTaskAssetsList);
 
 self.addEventListener("install", (event) => {
-  event.waitUntil(
-    precacheController.install(event).then((event) => {
-      event.waitUntil(
-        caches
-          .open(coreCacheName)
-          .then((cache) => cache.addAll(precacheResources))
-      );
-    })
-  );
+  // event.waitUntil(
+  //   precacheController.install(event).then((event) => {
+  //     caches
+  //       .open(coreCacheName)
+  //       .then((cache) => cache.addAll(precacheResources));
+  //   })
+  // );
   event.waitUntil(
     caches.open(taskCacheName).then((cache) => {
       return cache.addAll(egmaTaskAssetsList);
@@ -123,6 +121,5 @@ self.addEventListener("fetch", (event) => {
     })
   );
 });
-
 
 // registerRoute(new NavigationRoute(createHandlerBoundToURL("/"), { allowlist }));
