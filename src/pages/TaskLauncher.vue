@@ -4,20 +4,18 @@
     <div class="mb-6">
       <div class="font-bold text-3xl">
         📖 Homepage for
-        <span class="px-2 bg-stone-200 rounded">
-          {{ playerId }} </span
-        >
+        <span class="px-2 bg-stone-200 rounded"> {{ playerId }} </span>
       </div>
     </div>
     <div class="flex flex-col gap-3">
+      <div class="font-bold text-xl">Tasks List</div>
+      <div class="text-md">Please choose from the available tasks below:</div>
       <div
         class="flex flex-col align-center justify-center bg-stone-100 gap-3 p-5 rounded"
       >
-        <div class="font-bold text-xl">Tasks List</div>
-        <div class="text-md">Please choose from the available tasks below:</div>
         <div class="flex flex-col gap-3 border rounded border-red-800 p-4">
-          <div class="text-lg font-bold">ROAR Tasks</div>
-          <div class="flex flex-col gap-3">
+          <div class="text-lg font-bold flex-wrap">ROAR Tasks</div>
+          <div class="flex flex-row gap-3">
             <a :href="'/play/' + playerId + '/task/swr'">
               <button class="btn-ghost">ROAR - SWR</button>
             </a>
@@ -30,14 +28,18 @@
           </div>
         </div>
         <div
-          class="flex flex-col align-center justify-center border p-5 rounded border-red-800 gap-3"
+          class="flex flex-col flex-wrap align-center justify-center border p-5 rounded border-red-800 gap-3"
         >
           <div class="text-lg font-bold">Levante Tasks</div>
-          <div class="flex flex-col gap-3">
+          <div class="flex flex-row flex-wrap gap-3">
             <a :href="'/play/' + playerId + '/task/levante/hearts-and-flowers'">
               <button class="btn-ghost">Hearts and Flowers</button>
             </a>
-            <a :href="'/play/' + playerId + '/task/levante/same-different-selection'">
+            <a
+              :href="
+                '/play/' + playerId + '/task/levante/same-different-selection'
+              "
+            >
               <button class="btn-ghost">Same Different Selection</button>
             </a>
             <a :href="'/play/' + playerId + '/task/levante/memory-game'">
@@ -96,7 +98,6 @@ import Navbar from "@/components/Navbar.vue";
 import { useRoute } from "vue-router";
 const route = useRoute();
 const { playerId } = route.params;
-
 
 // list of levante apps
 // EF tasks
