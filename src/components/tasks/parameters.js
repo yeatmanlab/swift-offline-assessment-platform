@@ -30,6 +30,7 @@ export const taskParameters = {
       registered: true,
     },
     variant: {
+
       lastUpdated: {
         seconds: 1726698728,
         nanoseconds: 612000000,
@@ -156,6 +157,7 @@ export const taskParameters = {
       stimulusBlocks: 3,
       stormItemId: false,
       description: "hearts and flowers",
+      taskName: "hearts-and-flowers",
     },
   },
   "same-different-selection": {
@@ -218,7 +220,7 @@ export const taskParameters = {
     variant: {
       age: null,
       buttonLayout: "default",
-      corpus: "null",
+      corpus: "matrix-reasoning-item-bank",
       keyHelpers: false,
       language: "en",
       maxIncorrect: 3,
@@ -230,7 +232,7 @@ export const taskParameters = {
       skipInstructions: true,
       stimulusBlocks: 3,
       stormItemId: false,
-      taskName: "matrix-game",
+      taskName: "matrix-reasoning",
     },
   },
   "mental-reasoning": {
@@ -284,6 +286,7 @@ export const taskParameters = {
       taskName: "trog",
     },
   },
+
   pa: {
     task: {
       description: "Identify the sounds in the words",
@@ -296,6 +299,32 @@ export const taskParameters = {
       numTestItems: null,
       skipInstructions: true,
       userMode: "fixed",
+    },
+  },
+  // this is how levante represents pa
+  "roar-pa": {
+    task: {
+      description: "Identify the sounds in the words",
+      image:
+        "https://storage.googleapis.com/road-dashboard/shared/trog-logo.png",
+      name: "Pa",
+    },
+    variant: {
+      age: null,
+      buttonLayout: null,
+      corpus: null,
+      keyHelpers: false,
+      language: "en",
+      maxIncorrect: 3,
+      maxTime: null,
+      numOfPracticeTrials: null,
+      numberOfTrials: null,
+      sequentialPractice: true,
+      sequentialStimulus: true,
+      skipInstructions: true,
+      stimulusBlocks: null,
+      stormItemId: false,
+      taskName: "roar-pa",
     },
   },
   sre: {
