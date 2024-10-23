@@ -32,46 +32,52 @@
         >
           <div class="text-lg font-bold">Levante Tasks</div>
           <div class="flex flex-row flex-wrap gap-3">
-            <a :href="'/play/' + playerId + '/task/levante/hearts-and-flowers'">
-              <button class="btn-ghost">Hearts and Flowers</button>
-            </a>
-            <a
-              :href="
-                '/play/' + playerId + '/task/levante/same-different-selection'
-              "
-            >
-              <button class="btn-ghost">Same Different Selection</button>
-            </a>
-            <a :href="'/play/' + playerId + '/task/levante/memory-game'">
-              <button class="btn-ghost">Memory Game</button>
-            </a>
-            <a :href="'/play/' + playerId + '/task/levante/matrix-reasoning'">
-              <button class="btn-ghost">Matrix Reasoning</button>
-            </a>
-            <a :href="'/play/' + playerId + '/task/levante/mental-reasoning'">
-              <button class="btn-ghost">Mental Reasoning</button>
-            </a>
-            <a :href="'/play/' + playerId + '/task/levante/trog'">
-              <button class="btn-ghost">TROG (Syntax)</button>
-            </a>
-            <a :href="'/play/' + playerId + '/task/levante/vocab'">
-              <button class="btn-ghost">Vocab</button>
-            </a>
-            <a :href="'/play/' + playerId + '/task/levante/pa'">
-              <button class="btn-ghost">Phoneme</button>
-            </a>
-            <a :href="'/play/' + playerId + '/task/levante/sre'">
-              <button class="btn-ghost">Sentence</button>
-            </a>
-            <a :href="'/play/' + playerId + '/task/levante/swr'">
-              <button class="btn-ghost">Word</button>
-            </a>
-            <a :href="'/play/' + playerId + '/task/levante/egma-math'">
-              <button class="btn-ghost">Math</button>
-            </a>
-            <a :href="'/play/' + playerId + '/task/levante/theory-of-mind'">
-              <button class="btn-ghost">Theory of Mind</button>
-            </a>
+            <div class="bg-green-200 p-3 rounded">
+              <a
+                :href="
+                  '/play/' + playerId + '/task/levante/same-different-selection'
+                "
+              >
+                <button class="btn-ghost">Same Different Selection</button>
+              </a>
+              <a :href="'/play/' + playerId + '/task/levante/memory-game'">
+                <button class="btn-ghost">Memory Game</button>
+              </a>
+              <a :href="'/play/' + playerId + '/task/levante/trog'">
+                <button class="btn-ghost">TROG (Syntax)</button>
+              </a>
+              <a :href="'/play/' + playerId + '/task/levante/pa'">
+                <button class="btn-ghost">Phoneme</button>
+              </a>
+              <a :href="'/play/' + playerId + '/task/levante/egma-math'">
+                <button class="btn-ghost">Math</button>
+              </a>
+              <a :href="'/play/' + playerId + '/task/levante/theory-of-mind'">
+                <button class="btn-ghost">Theory of Mind</button>
+              </a>
+            </div>
+            <div class="bg-red-200 p-3 rounded">
+              <a
+                :href="'/play/' + playerId + '/task/levante/hearts-and-flowers'"
+              >
+                <button class="btn-ghost">Hearts and Flowers</button>
+              </a>
+              <a :href="'/play/' + playerId + '/task/levante/matrix-reasoning'">
+                <button class="btn-ghost">Matrix Reasoning</button>
+              </a>
+              <a :href="'/play/' + playerId + '/task/levante/mental-reasoning'">
+                <button class="btn-ghost">Mental Reasoning</button>
+              </a>
+              <a :href="'/play/' + playerId + '/task/levante/vocab'">
+                <button class="btn-ghost">Vocab</button>
+              </a>
+              <a :href="'/play/' + playerId + '/task/levante/sre'">
+                <button class="btn-ghost">Sentence</button>
+              </a>
+              <a :href="'/play/' + playerId + '/task/levante/swr'">
+                <button class="btn-ghost">Word</button>
+              </a>
+            </div>
             <!-- <a href="/play/teak1023/task/sre">
               <button class="btn-ghost">LEVANTE - SRE</button>
             </a> -->

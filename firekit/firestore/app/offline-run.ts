@@ -53,7 +53,6 @@ export class OfflineRun extends RoarRun {
       demoData,
     });
     this.targetUser = targetUser;
-    console.log("target user is ", targetUser);
     this.runRef = doc(
       collection(this.user.userRef, "offlineUsers", this.targetUser, "runs")
     );
